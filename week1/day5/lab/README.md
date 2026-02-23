@@ -27,6 +27,7 @@ We can add the unadded directory (week1/day5) with `git add`
 We can register the local repository with `git commit -m`.
 
 `git log` We can get detailed information about the commits made
-![](/Screenshot3.png)
+
+![](Screenshot3.png)
 
 **`git push origin main`**- We use this command to upload from Local to Global
