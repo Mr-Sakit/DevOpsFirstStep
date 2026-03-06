@@ -110,6 +110,9 @@ In Normal mode, the following navigation commands were practiced:
 | `o` | Open new line below and insert |
 | `O` | Open new line above and insert |
 
+[Part D — Insert and Delete](OoINS.mp4)
+<video src="OoINS.mp4" width="600" controls></video>
+
 ### Delete Commands
 
 | Key | Action |
