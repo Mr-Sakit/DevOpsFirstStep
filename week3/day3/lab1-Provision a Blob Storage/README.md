@@ -10,7 +10,7 @@ In this lab, an Azure Storage Account was created, a blob container was provisio
 
 Navigate to **Storage center** → **Blob Storage** → Click **+ Create**.
 
-![Step 1 — Storage center overview](Screenshot%202026-03-05%20104557.png)
+![Step 1 — Storage center overview](Screenshots/Screenshot%202026-03-05%20104557.png)
 
 ### Basics Tab
 
@@ -26,7 +26,7 @@ Navigate to **Storage center** → **Blob Storage** → Click **+ Create**.
 
 > **Note:** The storage account name must be **globally unique**, lowercase, and can only include letters and numbers (3–24 characters).
 
-![Step 1 — Basics tab](Screenshot%202026-03-05%20104948.png)
+![Step 1 — Basics tab](Screenshots/Screenshot%202026-03-05%20104948.png)
 
 ### Advanced Tab
 
@@ -46,7 +46,7 @@ Navigate to **Storage center** → **Blob Storage** → Click **+ Create**.
 > - **Cool** — For infrequently accessed data (lower storage cost, higher access cost)
 > - **Cold/Archive** — For rarely accessed data (lowest storage cost, highest access cost)
 
-![Step 1 — Advanced tab (security & access tier)](Screenshot%202026-03-05%20105126.png)
+![Step 1 — Advanced tab (security & access tier)](Screenshots/Screenshot%202026-03-05%20105126.png)
 
 ### Review + Create
 
@@ -62,13 +62,13 @@ Navigate to **Storage center** → **Blob Storage** → Click **+ Create**.
 | | Min TLS version | 1.2 |
 | **Networking** | Public network access | Enabled from all networks |
 
-![Step 1 — Review + create](Screenshot%202026-03-05%20105206.png)
+![Step 1 — Review + create](Screenshots/Screenshot%202026-03-05%20105206.png)
 
 ### Storage Account Overview
 
 After deployment, the overview page shows all configured services and settings:
 
-![Step 1 — Storage account overview](Screenshot%202026-03-05%20105257.png)
+![Step 1 — Storage account overview](Screenshots/Screenshot%202026-03-05%20105257.png)
 
 ---
 
@@ -95,7 +95,7 @@ Open the container → Click **Upload** → Select a file:
 | **Blob type** | Block blob (auto-detected) |
 | **Access tier** | Hot (Inferred from account default) |
 
-![Step 3 — Upload blob dialog](Screenshot%202026-03-05%20110205.png)
+![Step 3 — Upload blob dialog](Screenshots/Screenshot%202026-03-05%20110205.png)
 
 ### Verify Upload
 
@@ -105,7 +105,7 @@ The uploaded file appears in the container:
 |------|---------------|-------------|-----------|------|-------------|
 | `sakit.txt` | 05.03.2026 11:02:06 | Hot (Inferred) | Block blob | 0 | Available |
 
-![Step 3 — Blob listed in container](Screenshot%202026-03-05%20111716.png)
+![Step 3 — Blob listed in container](Screenshots/Screenshot%202026-03-05%20111716.png)
 
 ---
 
@@ -124,7 +124,7 @@ Go to container → **Settings** → **Shared access tokens**:
 
 Click **Generate SAS token and URL**.
 
-![Step 4 — SAS token configuration](Screenshot%202026-03-05%20113053.png)
+![Step 4 — SAS token configuration](Screenshots/Screenshot%202026-03-05%20113053.png)
 
 ### Generated SAS Token and URL
 
@@ -138,7 +138,7 @@ https://devopsstorageaccountsakit.blob.core.windows.net/devops-container-lab-sak
 
 > **⚠️ Important:** SAS tokens are time-limited and grant access without needing account keys. Never share them publicly.
 
-![Step 4 — Generated SAS token and URL](Screenshot%202026-03-05%20113126.png)
+![Step 4 — Generated SAS token and URL](Screenshots/Screenshot%202026-03-05%20113126.png)
 
 ---
 
@@ -148,19 +148,19 @@ https://devopsstorageaccountsakit.blob.core.windows.net/devops-container-lab-sak
 
 Open **Microsoft Azure Storage Explorer** → Sign in with your Azure credentials:
 
-![Step 5.1 — Azure Storage Explorer sign in](Screenshot%202026-03-05%20113148.png)
+![Step 5.1 — Azure Storage Explorer sign in](Screenshots/Screenshot%202026-03-05%20113148.png)
 
 ### 5.2 — Open Connect Dialog
 
 Click the **Connect (plug icon)** → Select **Blob container or directory**:
 
-![Step 5.2 — Select resource type](Screenshot%202026-03-05%20113211.png)
+![Step 5.2 — Select resource type](Screenshots/Screenshot%202026-03-05%20113211.png)
 
 ### 5.3 — Select Connection Method
 
 Choose **Shared access signature URL (SAS)**:
 
-![Step 5.3 — Select SAS connection method](Screenshot%202026-03-05%20113239.png)
+![Step 5.3 — Select SAS connection method](Screenshots/Screenshot%202026-03-05%20113239.png)
 
 ### 5.4 — Enter SAS URL
 
@@ -171,7 +171,7 @@ Paste the **Blob SAS URL** generated in Step 4:
 | **Display name** | `devops-container-lab-sakit` |
 | **Blob container or directory SAS URL** | (paste the full SAS URL) |
 
-![Step 5.4 — Enter SAS URL](Screenshot%202026-03-05%20113330.png)
+![Step 5.4 — Enter SAS URL](Screenshots/Screenshot%202026-03-05%20113330.png)
 
 ### 5.5 — Review and Connect
 
@@ -187,7 +187,7 @@ Summary of connection settings:
 
 Click **Connect**.
 
-![Step 5.5 — Connection summary](Screenshot%202026-03-05%20113346.png)
+![Step 5.5 — Connection summary](Screenshots/Screenshot%202026-03-05%20113346.png)
 
 ### 5.6 — Verify in Storage Explorer
 
@@ -199,7 +199,7 @@ The container is now accessible in Storage Explorer. The uploaded blob `sakit.tx
 
 You can now perform **CRUD operations** (Upload, Download, Delete, Copy, Paste, etc.) directly from Storage Explorer — changes sync with the Azure Portal.
 
-![Step 5.6 — Connected to blob container in Storage Explorer](Screenshot%202026-03-05%20113438.png)
+![Step 5.6 — Connected to blob container in Storage Explorer](Screenshots/Screenshot%202026-03-05%20113438.png)
 
 ---
 

@@ -52,7 +52,7 @@ Navigate to **SQL Server** `devops-sql-server-sakit` → **Networking** → **Fi
 
 > **🔒 Security:** Only the Backend VM's IP is allowed — no public access. This ensures the database is only accessible from the backend server.
 
-![Step 1 — SQL Server firewall with BackendVM rule](Screenshot%202026-03-05%20202719.png)
+![Step 1 — SQL Server firewall with BackendVM rule](Screenshots/Screenshot%202026-03-05%20202719.png)
 
 ---
 
@@ -77,7 +77,7 @@ git clone https://github.com/saurabhd2106/ecommerce-app-three-tier-azure-db-ih
 cd ecommerce-app-three-tier-azure-db-ih/ecommerce-app-backend
 ```
 
-![Step 2.1 — Git clone and navigate to backend directory](Screenshot%202026-03-05%20211402.png)
+![Step 2.1 — Git clone and navigate to backend directory](Screenshots/Screenshot%202026-03-05%20211402.png)
 
 ### 2.2 — Create Backend `.env` File
 
@@ -111,7 +111,7 @@ RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100
 ```
 
-![Step 2.2 — Backend .env configuration](Screenshot%202026-03-05%20211446.png)
+![Step 2.2 — Backend .env configuration](Screenshots/Screenshot%202026-03-05%20211446.png)
 
 ### 2.3 — Create Frontend `.env` File
 
@@ -122,7 +122,7 @@ cat .env
 # Output: REACT_APP_API_URL=http://localhost:3001/api
 ```
 
-![Step 2.3 — Frontend .env file](Screenshot%202026-03-05%20211723.png)
+![Step 2.3 — Frontend .env file](Screenshots/Screenshot%202026-03-05%20211723.png)
 
 ### 2.4 — Install, Build, and Start the Backend
 
@@ -148,8 +148,8 @@ Connected to Azure SQL Database
 📁 API endpoints: http://localhost:3001/api
 ```
 
-![Step 2.4 — npm install and backend startup](Screenshot%202026-03-05%20214128.png)
-![Step 2.4 — Backend running with DB initialized](Screenshot%202026-03-05%20214145.png)
+![Step 2.4 — npm install and backend startup](Screenshots/Screenshot%202026-03-05%20214128.png)
+![Step 2.4 — Backend running with DB initialized](Screenshots/Screenshot%202026-03-05%20214145.png)
 
 ### 2.5 — Verify Backend API
 
@@ -159,7 +159,7 @@ curl http://localhost:3001/api/products
 
 Returns JSON with 10 products (Wireless Headphones, Smartphone, Laptop, Running Shoes, Yoga Mat, Coffee Maker, Bluetooth Speaker, Backpack, Water Bottle, Gaming Mouse).
 
-![Step 2.5 — curl API products response](Screenshot%202026-03-05%20214203.png)
+![Step 2.5 — curl API products response](Screenshots/Screenshot%202026-03-05%20214203.png)
 
 ---
 
@@ -190,7 +190,7 @@ cat .env
 npm install
 ```
 
-![Step 3.1 — Frontend clone and setup on VM1](Screenshot%202026-03-05%20220648.png)
+![Step 3.1 — Frontend clone and setup on VM1](Screenshots/Screenshot%202026-03-05%20220648.png)
 
 ---
 
@@ -214,7 +214,7 @@ Open the required ports on both VMs:
 | 300 | SSH | 22 | TCP | Any | Any |
 | 310 | enablevm2port | 80 | Any | Any | Any |
 
-![Step 4 — NSG rules for VM1 and VM2](Screenshot%202026-03-05%20232055.png)
+![Step 4 — NSG rules for VM1 and VM2](Screenshots/Screenshot%202026-03-05%20232055.png)
 
 ---
 
@@ -224,7 +224,7 @@ Access the frontend directly via VM1 IP → `http://20.54.84.106:3000`:
 
 The e-commerce store homepage loads showing "Welcome to Our E-commerce Store" with Shop Now and Browse Categories buttons.
 
-![Step 5 — Frontend homepage via direct IP](Screenshot%202026-03-05%20232514.png)
+![Step 5 — Frontend homepage via direct IP](Screenshots/Screenshot%202026-03-05%20232514.png)
 
 ---
 
@@ -248,7 +248,7 @@ Navigate to **Application gateways** → **Create**:
 | **Virtual network** | `devops-vnet-lb-sakit` |
 | **Subnet** | `ag-lab-subnet-sakit` (172.16.2.0/24) — *new* |
 
-![Step 6.1 — AG Basics tab](Screenshot%202026-03-06%20082555.png)
+![Step 6.1 — AG Basics tab](Screenshots/Screenshot%202026-03-06%20082555.png)
 
 ### New Subnet for Application Gateway
 
@@ -259,8 +259,8 @@ Navigate to **Application gateways** → **Create**:
 | **Starting address** | 172.16.2.0 |
 | **Size** | /24 (256 addresses) |
 
-![Step 6.1 — Add subnet for AG](Screenshot%202026-03-06%20083241.png)
-![Step 6.1 — Basics tab completed with subnet](Screenshot%202026-03-06%20083710.png)
+![Step 6.1 — Add subnet for AG](Screenshots/Screenshot%202026-03-06%20083241.png)
+![Step 6.1 — Basics tab completed with subnet](Screenshots/Screenshot%202026-03-06%20083710.png)
 
 ### 6.2 — Frontends Tab
 
@@ -269,7 +269,7 @@ Navigate to **Application gateways** → **Create**:
 | **Frontend IP address type** | Public |
 | **Public IPv4 address** | (New) `ag-public-ip-sakit` |
 
-![Step 6.2 — Frontends tab](Screenshot%202026-03-06%20083719.png)
+![Step 6.2 — Frontends tab](Screenshots/Screenshot%202026-03-06%20083719.png)
 
 ### 6.3 — Backends Tab
 
@@ -280,7 +280,7 @@ Two backend pools created:
 | `backend-pool` | 1 target | `lb-vm2-sakit937-7348e6ee` |
 | `frontend-pool` | 1 target | `lb-vm1-sakit615-ada45396` |
 
-![Step 6.3 — Backend pools](Screenshot%202026-03-06%20083733.png)
+![Step 6.3 — Backend pools](Screenshots/Screenshot%202026-03-06%20083733.png)
 
 ### 6.4 — Configuration Tab — Routing Rule
 
@@ -296,7 +296,7 @@ Two backend pools created:
 | **Port** | 80 |
 | **Listener type** | Basic |
 
-![Step 6.4 — Routing rule listener](Screenshot%202026-03-06%20084030.png)
+![Step 6.4 — Routing rule listener](Screenshots/Screenshot%202026-03-06%20084030.png)
 
 #### Backend Targets (Default)
 
@@ -316,8 +316,8 @@ Two backend pools created:
 | **Request time-out** | 20 seconds |
 | **Override hostname** | No |
 
-![Step 6.4 — Backend targets (default to frontend)](Screenshot%202026-03-06%20084058.png)
-![Step 6.4 — Frontend HTTP settings](Screenshot%202026-03-06%20084142.png)
+![Step 6.4 — Backend targets (default to frontend)](Screenshots/Screenshot%202026-03-06%20084058.png)
+![Step 6.4 — Frontend HTTP settings](Screenshots/Screenshot%202026-03-06%20084142.png)
 
 #### Path-Based Rule — `/api/*`
 
@@ -340,9 +340,9 @@ Click **Add multiple targets to create a path-based rule**:
 | **Request time-out** | 20 seconds |
 | **Override hostname** | No |
 
-![Step 6.4 — Path-based rule /api/*](Screenshot%202026-03-06%20084402.png)
-![Step 6.4 — Backend HTTP settings (port 3001)](Screenshot%202026-03-06%20084437.png)
-![Step 6.4 — Path rule completed](Screenshot%202026-03-06%20084507.png)
+![Step 6.4 — Path-based rule /api/*](Screenshots/Screenshot%202026-03-06%20084402.png)
+![Step 6.4 — Backend HTTP settings (port 3001)](Screenshots/Screenshot%202026-03-06%20084437.png)
+![Step 6.4 — Path rule completed](Screenshots/Screenshot%202026-03-06%20084507.png)
 
 #### Final Configuration Summary
 
@@ -351,7 +351,7 @@ Click **Add multiple targets to create a path-based rule**:
 | `/` (default) | `ecommerce-routing-rule` | `frontend-pool` | 3000 |
 | `/api/*` | `api-route` | `backend-pool` | 3001 |
 
-![Step 6.4 — Final routing configuration](Screenshot%202026-03-06%20084655.png)
+![Step 6.4 — Final routing configuration](Screenshots/Screenshot%202026-03-06%20084655.png)
 
 ### 6.5 — AG Deployed
 
@@ -363,7 +363,7 @@ Click **Add multiple targets to create a path-based rule**:
 | **Frontend public IP** | 20.54.96.5 (`ag-public-ip-sakit`) |
 | **Tier** | Standard V2 |
 
-![Step 6.5 — AG overview](Screenshot%202026-03-06%20094500.png)
+![Step 6.5 — AG overview](Screenshots/Screenshot%202026-03-06%20094500.png)
 
 ---
 
@@ -377,7 +377,7 @@ Now that the AG is deployed (IP: `20.54.96.5`), update both config files:
 REACT_APP_API_URL=http://20.54.96.5/api
 ```
 
-![Step 7 — Frontend .env updated with AG IP](Screenshot%202026-03-06%20094649.png)
+![Step 7 — Frontend .env updated with AG IP](Screenshots/Screenshot%202026-03-06%20094649.png)
 
 ### Backend `.env` — CORS (on VM2)
 
@@ -385,7 +385,7 @@ REACT_APP_API_URL=http://20.54.96.5/api
 CORS_ORIGIN=http://20.54.96.5
 ```
 
-![Step 7 — Backend CORS updated with AG IP](Screenshot%202026-03-06%20095003.png)
+![Step 7 — Backend CORS updated with AG IP](Screenshots/Screenshot%202026-03-06%20095003.png)
 
 > **Important:** After updating `.env` files, rebuild and restart both apps:
 > ```bash
@@ -404,7 +404,7 @@ CORS_ORIGIN=http://20.54.96.5
 
 Access `http://20.54.96.5/products/1` — the product detail page loads (Wireless Headphones, $199.99). Backend logs show requests arriving from AG subnet IPs (172.16.2.4, 172.16.2.5).
 
-![Step 8.1 — Product detail page via AG + backend logs](Screenshot%202026-03-06%20095414.png)
+![Step 8.1 — Product detail page via AG + backend logs](Screenshots/Screenshot%202026-03-06%20095414.png)
 
 ### 8.2 — Network Tab Verification
 
@@ -418,7 +418,7 @@ Products page (`http://20.54.96.5`) — Network tab in DevTools confirms:
 | **Remote Address** | 20.54.96.5:80 |
 | **10 products found** | ✅ |
 
-![Step 8.2 — Network tab showing API calls via AG](Screenshot%202026-03-06%20095911.png)
+![Step 8.2 — Network tab showing API calls via AG](Screenshots/Screenshot%202026-03-06%20095911.png)
 
 ---
 

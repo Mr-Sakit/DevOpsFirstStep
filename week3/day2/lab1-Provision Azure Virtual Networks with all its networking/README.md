@@ -12,7 +12,7 @@ In this lab, a Linux virtual machine was provisioned on Azure with a fully custo
 | **Resource group name** | `devops-vnet-lab-sakit` |
 | **Region** | (Europe) Austria East |
 
-![Step 1 — Create resource group](Screenshot%202026-03-03%20115413.png)
+![Step 1 — Create resource group](Screenshots/Screenshot%202026-03-03%20115413.png)
 
 ---
 
@@ -29,9 +29,9 @@ In this lab, a Linux virtual machine was provisioned on Azure with a fully custo
 | **Virtual network name** | `devops-vnet-sakit` |
 | **Region** | (Europe) Austria East |
 
-![Step 2 — Search Virtual Networks](Screenshot%202026-03-03%20115516.png)
+![Step 2 — Search Virtual Networks](Screenshots/Screenshot%202026-03-03%20115516.png)
 
-![Step 2 — VNet Basics tab](Screenshot%202026-03-03%20120221.png)
+![Step 2 — VNet Basics tab](Screenshots/Screenshot%202026-03-03%20120221.png)
 
 ### IP Addresses Tab
 
@@ -41,21 +41,21 @@ In this lab, a Linux virtual machine was provisioned on Azure with a fully custo
 | **Subnet name** | `devops-subnet-sakit` |
 | **Subnet address range** | `10.2.0.0/24` (256 addresses, 10.2.0.0 – 10.2.0.255) |
 
-![Step 2 — IP Addresses tab (default address space)](Screenshot%202026-03-03%20120429.png)
+![Step 2 — IP Addresses tab (default address space)](Screenshots/Screenshot%202026-03-03%20120429.png)
 
-![Step 2 — Edit subnet (devops-subnet-sakit, 10.2.0.0/24)](Screenshot%202026-03-03%20121407.png)
+![Step 2 — Edit subnet (devops-subnet-sakit, 10.2.0.0/24)](Screenshots/Screenshot%202026-03-03%20121407.png)
 
-![Step 2 — Subnet configured](Screenshot%202026-03-03%20121456.png)
+![Step 2 — Subnet configured](Screenshots/Screenshot%202026-03-03%20121456.png)
 
 ### Review + Create
 
 Validation passed. Click **Create**.
 
-![Step 2 — VNet Review + create (Validation passed)](Screenshot%202026-03-03%20121538.png)
+![Step 2 — VNet Review + create (Validation passed)](Screenshots/Screenshot%202026-03-03%20121538.png)
 
 ### Deployment Complete
 
-![Step 2 — VNet deployment complete](Screenshot%202026-03-03%20121659.png)
+![Step 2 — VNet deployment complete](Screenshots/Screenshot%202026-03-03%20121659.png)
 
 ### VNet Overview
 
@@ -67,7 +67,7 @@ Validation passed. Click **Create**.
 | **Subnets** | 1 subnet |
 | **DNS servers** | Azure provided DNS service |
 
-![Step 2 — VNet Overview page](Screenshot%202026-03-03%20121803.png)
+![Step 2 — VNet Overview page](Screenshots/Screenshot%202026-03-03%20121803.png)
 
 ---
 
@@ -84,11 +84,11 @@ Validation passed. Click **Create**.
 | **Name** | `devops-nsg-sakit` |
 | **Region** | Austria East |
 
-![Step 3 — Search Network security groups](Screenshot%202026-03-03%20121909.png)
+![Step 3 — Search Network security groups](Screenshots/Screenshot%202026-03-03%20121909.png)
 
-![Step 3 — NSG Create page](Screenshot%202026-03-03%20121941.png)
+![Step 3 — NSG Create page](Screenshots/Screenshot%202026-03-03%20121941.png)
 
-![Step 3 — Create NSG (devops-nsg-sakit)](Screenshot%202026-03-03%20122110.png)
+![Step 3 — Create NSG (devops-nsg-sakit)](Screenshots/Screenshot%202026-03-03%20122110.png)
 
 ### Add SSH Inbound Rule
 
@@ -115,11 +115,11 @@ Add a new rule to allow SSH:
 | **Priority** | 100 |
 | **Name** | `Allow-SSH` |
 
-![Step 3 — NSG Inbound security rules (default rules + Add)](Screenshot%202026-03-03%20125934.png)
+![Step 3 — NSG Inbound security rules (default rules + Add)](Screenshots/Screenshot%202026-03-03%20125934.png)
 
-![Step 3 — Add inbound SSH rule](Screenshot%202026-03-03%20130027.png)
+![Step 3 — Add inbound SSH rule](Screenshots/Screenshot%202026-03-03%20130027.png)
 
-![Step 3 — Allow-SSH rule added successfully](Screenshot%202026-03-04%20082314.png)
+![Step 3 — Allow-SSH rule added successfully](Screenshots/Screenshot%202026-03-04%20082314.png)
 
 ---
 
@@ -140,13 +140,13 @@ Add a new rule to allow SSH:
 | **IP address assignment** | Static |
 | **Routing preference** | MicrosoftNetwork |
 
-![Step 4 — Search Public IP addresses](Screenshot%202026-03-04%20082615.png)
+![Step 4 — Search Public IP addresses](Screenshots/Screenshot%202026-03-04%20082615.png)
 
-![Step 4 — Public IP addresses Create](Screenshot%202026-03-04%20082646.png)
+![Step 4 — Public IP addresses Create](Screenshots/Screenshot%202026-03-04%20082646.png)
 
-![Step 4 — Create public IP address](Screenshot%202026-03-04%20082936.png)
+![Step 4 — Create public IP address](Screenshots/Screenshot%202026-03-04%20082936.png)
 
-![Step 4 — Public IP Review + create (Validation passed)](Screenshot%202026-03-04%20083123.png)
+![Step 4 — Public IP Review + create (Validation passed)](Screenshots/Screenshot%202026-03-04%20083123.png)
 
 ---
 
@@ -165,13 +165,13 @@ Add a new rule to allow SSH:
 | **IP version** | IPv4 |
 | **Private IP address assignment** | Dynamic |
 
-![Step 5 — Search Network Interfaces](Screenshot%202026-03-04%20083228.png)
+![Step 5 — Search Network Interfaces](Screenshots/Screenshot%202026-03-04%20083228.png)
 
-![Step 5 — Network Interfaces Create](Screenshot%202026-03-04%20083253.png)
+![Step 5 — Network Interfaces Create](Screenshots/Screenshot%202026-03-04%20083253.png)
 
-![Step 5 — Create network interface](Screenshot%202026-03-04%20083820.png)
+![Step 5 — Create network interface](Screenshots/Screenshot%202026-03-04%20083820.png)
 
-![Step 5 — NIC deployment complete](Screenshot%202026-03-04%20084339.png)
+![Step 5 — NIC deployment complete](Screenshots/Screenshot%202026-03-04%20084339.png)
 
 ---
 
@@ -200,11 +200,11 @@ With all networking components in place, the VM was created and attached to them
 
 > **Note:** Public inbound ports are set to **None** here because we already created the NSG (`devops-nsg-sakit`) with an SSH allow rule in Step 3.
 
-![Step 6 — Virtual machines Create](Screenshot%202026-03-04%20084754.png)
+![Step 6 — Virtual machines Create](Screenshots/Screenshot%202026-03-04%20084754.png)
 
-![Step 6 — Basics tab (Project & Instance details)](Screenshot%202026-03-04%20085138.png)
+![Step 6 — Basics tab (Project & Instance details)](Screenshots/Screenshot%202026-03-04%20085138.png)
 
-![Step 6 — Basics tab (Size, Admin account, Inbound ports)](Screenshot%202026-03-04%20085215.png)
+![Step 6 — Basics tab (Size, Admin account, Inbound ports)](Screenshots/Screenshot%202026-03-04%20085215.png)
 
 ### Disks Tab
 
@@ -215,7 +215,7 @@ With all networking components in place, the VM was created and attached to them
 | **Delete with VM** | ✅ |
 | **Key management** | Platform-managed key |
 
-![Step 6 — Disks tab](Screenshot%202026-03-04%20085314.png)
+![Step 6 — Disks tab](Screenshots/Screenshot%202026-03-04%20085314.png)
 
 ### Networking Tab
 
@@ -229,7 +229,7 @@ With all networking components in place, the VM was created and attached to them
 | **Delete public IP when VM is deleted** | ✅ |
 | **Load balancing** | None |
 
-![Step 6 — Networking tab](Screenshot%202026-03-04%20090028.png)
+![Step 6 — Networking tab](Screenshots/Screenshot%202026-03-04%20090028.png)
 
 ### Review + Create
 
@@ -242,11 +242,11 @@ Validation passed. Summary includes all networking components linked to the VM.
 | **Public IP** | devops-publicip-sakit |
 | **NIC network security group** | devops-nsg-sakit |
 
-![Step 6 — Review + create (Validation passed)](Screenshot%202026-03-04%20090142.png)
+![Step 6 — Review + create (Validation passed)](Screenshots/Screenshot%202026-03-04%20090142.png)
 
 ### Deployment Complete
 
-![Step 6 — VM deployment complete](Screenshot%202026-03-04%20090705.png)
+![Step 6 — VM deployment complete](Screenshots/Screenshot%202026-03-04%20090705.png)
 
 ---
 
@@ -268,7 +268,7 @@ ssh -i devops-vm-sakit_key.pem mr-sakit@68.210.64.128
 
 The SSH connection succeeded, confirming that the NSG (`devops-nsg-sakit`) correctly allows inbound traffic on port 22.
 
-![Step 7 — SSH connection to the VM](Screenshot%202026-03-04%20091719.png)
+![Step 7 — SSH connection to the VM](Screenshots/Screenshot%202026-03-04%20091719.png)
 
 ---
 

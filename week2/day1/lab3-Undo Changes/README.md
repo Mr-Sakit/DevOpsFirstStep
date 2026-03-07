@@ -12,7 +12,7 @@ In this section, you are managing the directory structure and moving files into 
 
 `git add week2`: Moves the contents of the week2 folder into the Staging Area.
 
-![](Screenshot1.png)
+![](Screenshots/Screenshot1.png)
 
 ## Screenshot 2: 
 
@@ -20,7 +20,7 @@ In this section, you are managing the directory structure and moving files into 
 
 `git commit -m "..."`: Saves the staged snapshot to the project history with a descriptive message. This creates a new commit hash (a80cb43).
 
-![](Screenshot2.png)
+![](Screenshots/Screenshot2.png)
 
 ## Screenshot 3: 
 
@@ -28,7 +28,7 @@ In this section, you are managing the directory structure and moving files into 
 
 Second `echo` command: Modifies the file again after the previous staging, resulting in a "modified" status in both the Staged and Unstaged categories when running git status.
 
-![](Screenshot3.png)
+![](Screenshots/Screenshot3.png)
 
 ## Screenshot 4: 
 
@@ -38,4 +38,4 @@ Second `echo` command: Modifies the file again after the previous staging, resul
 
 `git log`: Displays the commit history, showing the newly amended commit at the top of the list.
 
-![](Screenshot4.png)
+![](Screenshots/Screenshot4.png)

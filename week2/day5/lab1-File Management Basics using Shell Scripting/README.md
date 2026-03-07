@@ -64,7 +64,7 @@ rmdir "$WORK_DIR"                   # Remove the working directory
 echo "File operations complete. Backup copy is in $BACKUP_DIR."
 ```
 
-![file_manage.sh script content in nano editor](Screenshot%202026-02-27%20102941.png)
+![file_manage.sh script content in nano editor](Screenshots/Screenshot%202026-02-27%20102941.png)
 
 ---
 
@@ -113,7 +113,7 @@ Hello, this is a sample file.
 
 The working directory (`lab1_test`) was cleaned up, but the backup file (`lab1_backup/sample.txt`) was preserved as expected.
 
-![Script execution and backup verification](Screenshot%202026-02-27%20102906.png)
+![Script execution and backup verification](Screenshots/Screenshot%202026-02-27%20102906.png)
 
 ---
 

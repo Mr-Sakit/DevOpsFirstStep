@@ -17,9 +17,9 @@ A new public repository called `RepoForCollaborating` was created on GitHub by c
 
 **Result:** The repository was successfully created. GitHub displayed the quick setup page with the remote URL: `https://github.com/Mr-Sakit/RepoForCollaborating.git` and instructions for pushing from the command line.
 
-![Step 1a — Click "New" to create a repository](Screenshot1.png)
-![Step 1b — Repository creation form](Screenshot2.png)
-![Step 1c — Empty repository quick setup page](Screenshot3.png)
+![Step 1a — Click "New" to create a repository](Screenshots/Screenshot1.png)
+![Step 1b — Repository creation form](Screenshots/Screenshot2.png)
+![Step 1c — Empty repository quick setup page](Screenshots/Screenshot3.png)
 
 ---
 
@@ -42,13 +42,13 @@ To authenticate Git operations over HTTPS, a Fine-grained Personal Access Token 
 
 **Result:** The token was generated successfully. GitHub displayed a warning to copy the token immediately, as it won't be shown again. The token starts with `github_pat_11E...`.
 
-![Step 2a — Navigate to Settings](Screenshot4.png)
-![Step 2b — Find Developer settings](Screenshot5.png)
-![Step 2c — Fine-grained tokens page](Screenshot6.png)
-![Step 2d — Click "Generate new token"](Screenshot7.png)
-![Step 2e — Token name and repository access](Screenshot8.png)
-![Step 2f — Permissions configuration](Screenshot9.png)
-![Step 2g — Token generated successfully](Screenshot10.png)
+![Step 2a — Navigate to Settings](Screenshots/Screenshot4.png)
+![Step 2b — Find Developer settings](Screenshots/Screenshot5.png)
+![Step 2c — Fine-grained tokens page](Screenshots/Screenshot6.png)
+![Step 2d — Click "Generate new token"](Screenshots/Screenshot7.png)
+![Step 2e — Token name and repository access](Screenshots/Screenshot8.png)
+![Step 2f — Permissions configuration](Screenshots/Screenshot9.png)
+![Step 2g — Token generated successfully](Screenshots/Screenshot10.png)
 
 ---
 
@@ -77,8 +77,8 @@ git push --set-upstream origin main         # Successful push
 
 **Result:** The push was successful. The `main` branch was set up to track `origin/main`. `git status` confirmed: "On branch main, up to date with 'origin/main', working tree clean."
 
-![Step 3a — git init and adding remote](Screenshot11.png)
-![Step 3b — Push attempts, auth fix, and successful push](Screenshot12.png)
+![Step 3a — git init and adding remote](Screenshots/Screenshot11.png)
+![Step 3b — Push attempts, auth fix, and successful push](Screenshots/Screenshot12.png)
 
 ---
 
@@ -107,7 +107,7 @@ cat README.md                                # View file — now shows line adde
 - After editing the file in VS Code and adding "This line added on VS Code", `cat README.md` displayed both the original and new content.
 - `git fetch` retrieves changes from the remote without merging, while `git pull` fetches and merges in one step.
 
-![Step 4 — Fetch, pull, and local file editing](Screenshot13.png)
+![Step 4 — Fetch, pull, and local file editing](Screenshots/Screenshot13.png)
 
 ---
 

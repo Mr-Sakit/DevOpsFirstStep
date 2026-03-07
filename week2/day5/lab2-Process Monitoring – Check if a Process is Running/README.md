@@ -16,7 +16,7 @@ top
 
 The `top` output shows system-level metrics (CPU, memory, swap) and a list of running processes including their PID, user, CPU/memory usage, and command name. We identified `cron` as an active process to use in our script test.
 
-![top command showing running processes — cron highlighted](Screenshot%202026-03-06%20212147.png)
+![top command showing running processes — cron highlighted](Screenshots/Screenshot%202026-03-06%20212147.png)
 
 ---
 
@@ -48,7 +48,7 @@ fi
 
 The script uses `pgrep -x` for exact process name matching and redirects output to `/dev/null` to silently check the exit code.
 
-![check_process.sh script in vi editor — checking cron](Screenshot%202026-03-06%20212341.png)
+![check_process.sh script in vi editor — checking cron](Screenshots/Screenshot%202026-03-06%20212341.png)
 
 ---
 
@@ -66,7 +66,7 @@ cron is running
 
 The `cron` service was running on the system, so `pgrep -x cron` returned exit code 0 (success), and the script correctly printed "cron is running".
 
-![Running check_process.sh — cron is running](Screenshot%202026-03-06%20212439.png)
+![Running check_process.sh — cron is running](Screenshots/Screenshot%202026-03-06%20212439.png)
 
 ---
 
@@ -80,7 +80,7 @@ vi check_process.sh
 
 Changed: `process="cron"` → `process="FakeExample"`
 
-![check_process.sh modified to check FakeExample](Screenshot%202026-03-06%20212600.png)
+![check_process.sh modified to check FakeExample](Screenshots/Screenshot%202026-03-06%20212600.png)
 
 ```bash
 ./check_process.sh
@@ -93,7 +93,7 @@ FakeExample is NOT running
 
 Since `FakeExample` is not a real process, `pgrep -x "FakeExample"` returned exit code 1 (not found), and the script correctly printed "FakeExample is NOT running".
 
-![Running check_process.sh — FakeExample is NOT running](Screenshot%202026-03-06%20212622.png)
+![Running check_process.sh — FakeExample is NOT running](Screenshots/Screenshot%202026-03-06%20212622.png)
 
 ---
 

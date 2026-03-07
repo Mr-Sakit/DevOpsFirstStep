@@ -17,7 +17,7 @@ sudo apt install nginx -y          # Install Nginx web server
 
 **Result:** Package lists were fetched from `azure.archive.ubuntu.com`. Nginx and its dependencies (`nginx-common`, `nginx-core`, `libnginx-mod-*`, etc.) were installed successfully.
 
-![Step 1 — sudo apt update and install nginx](Screenshot%202026-02-27%20084942.png)
+![Step 1 — sudo apt update and install nginx](Screenshots/Screenshot%202026-02-27%20084942.png)
 
 ---
 
@@ -35,7 +35,7 @@ sudo ls -l /var/www/site1 /var/www/app                         # Verify listings
 
 **Result:** Nginx was synchronized with SysV service scripts and enabled. Directories `/var/www/site1` and `/var/www/app` were created with `www-data` ownership and `755` permissions. The `/var/www/` listing also showed the default `html` directory.
 
-![Step 2 — Enable Nginx and create directories](Screenshot%202026-02-27%20085130.png)
+![Step 2 — Enable Nginx and create directories](Screenshots/Screenshot%202026-02-27%20085130.png)
 
 ---
 
@@ -105,7 +105,7 @@ server {
 
 **Result:** Four files were created via `nano`. A minor typo (`/vat/www/app/index.html`) was corrected to `/var/www/app/index.html`, and `sites-avaiable` was corrected to `sites-available`.
 
-![Step 3 — nano commands for HTML and config files](Screenshot%202026-02-27%20085215.png)
+![Step 3 — nano commands for HTML and config files](Screenshots/Screenshot%202026-02-27%20085215.png)
 
 ---
 
@@ -122,7 +122,7 @@ sudo nginx -t && sudo systemctl reload nginx  # Test and reload
 
 **Result:** Symlinks `app.conf` and `site1.conf` were created in `sites-enabled/` pointing to `sites-available/`. Nginx configuration test passed: `syntax is ok`, `test is successful`.
 
-![Step 4 — Symlinks and nginx reload](Screenshot%202026-02-27%20085334.png)
+![Step 4 — Symlinks and nginx reload](Screenshots/Screenshot%202026-02-27%20085334.png)
 
 ---
 
@@ -171,7 +171,7 @@ Content-Length: 123
 
 **Result:** `VM_IP` was resolved to `172.21.0.4`. Hostnames `site1.local`, `app.local`, `api.local`, and `service2.local` were added to `/etc/hosts`. Both virtual hosts returned `HTTP/1.1 200 OK` with correct content lengths.
 
-![Step 5 — Hosts file and curl tests](Screenshot%202026-02-27%20085440.png)
+![Step 5 — Hosts file and curl tests](Screenshots/Screenshot%202026-02-27%20085440.png)
 
 ---
 
@@ -192,7 +192,7 @@ echo "y" | sudo ufw enable             # Enable firewall
 
 **Result:** Default incoming policy set to `deny`, outgoing to `allow`. SSH and `Nginx Full` (ports 80, 443) rules were added. Firewall is active and enabled on system startup.
 
-![Step 6 — UFW installation and configuration](Screenshot%202026-02-27%20085513.png)
+![Step 6 — UFW installation and configuration](Screenshots/Screenshot%202026-02-27%20085513.png)
 
 ---
 
@@ -220,7 +220,7 @@ To                         Action      From
 ### Available Applications:
 Apache, Apache Full, Apache Secure, Nginx Full, Nginx HTTP, Nginx HTTPS, OpenSSH.
 
-![Step 7 — UFW status and app list](Screenshot%202026-02-27%20085529.png)
+![Step 7 — UFW status and app list](Screenshots/Screenshot%202026-02-27%20085529.png)
 
 ---
 
@@ -234,7 +234,7 @@ sudo apt install fail2ban -y       # Install Fail2Ban
 
 **Result:** Fail2Ban and its dependencies (`python3-pyinotify`, `whois`) were installed.
 
-![Step 8 — Fail2Ban installation](Screenshot%202026-02-27%20085544.png)
+![Step 8 — Fail2Ban installation](Screenshots/Screenshot%202026-02-27%20085544.png)
 
 ---
 
@@ -272,7 +272,7 @@ sudo fail2ban-client status sshd | cat          # View sshd jail details
 
 **Result:** Fail2Ban was enabled and started. Three jails are active: `nginx-http-auth`, `nginx-limit-req`, `sshd`. The `sshd` jail monitors `/var/log/auth.log` — currently 0 failed, 0 banned.
 
-![Step 9 — Fail2Ban configuration and status](Screenshot%202026-02-27%20085607.png)
+![Step 9 — Fail2Ban configuration and status](Screenshots/Screenshot%202026-02-27%20085607.png)
 
 ---
 
@@ -284,7 +284,7 @@ sudo fail2ban-client status sshd | cat
 
 **Result:** After some time, the `sshd` jail showed: **Currently failed: 1**, **Total failed: 3**, but **Currently banned: 0**. This demonstrates Fail2Ban is actively tracking failed SSH attempts.
 
-![Step 10 — Fail2Ban sshd status with failed attempts](Screenshot%202026-02-27%20085636.png)
+![Step 10 — Fail2Ban sshd status with failed attempts](Screenshots/Screenshot%202026-02-27%20085636.png)
 
 ---
 
@@ -313,7 +313,7 @@ add_header Referrer-Policy "no-referrer-when-downgrade" always;
 
 **Result:** Nginx configuration test passed and service was reloaded successfully.
 
-![Step 11 — Security config and reload](Screenshot%202026-02-27%20085716.png)
+![Step 11 — Security config and reload](Screenshots/Screenshot%202026-02-27%20085716.png)
 
 ---
 
@@ -333,7 +333,7 @@ ls -la /var/www/site1 /var/www/app | cat
 
 Both `/var/www/app` and `/var/www/site1` contain `index.html` files with correct ownership and permissions.
 
-![Step 12 — Verify security headers and file listings](Screenshot%202026-02-27%20085748.png)
+![Step 12 — Verify security headers and file listings](Screenshots/Screenshot%202026-02-27%20085748.png)
 
 ---
 
@@ -363,7 +363,7 @@ sudo logrotate -f /etc/logrotate.conf            # Force log rotation
 
 **Result:** Monitoring data saved to `~/lab6-nginx-monitoring.txt`. Nginx log rotation is configured in `/etc/logrotate.d/nginx` for `/var/log/nginx/*.log`.
 
-![Step 13 — Monitoring snapshot](Screenshot%202026-02-27%20085848.png)
+![Step 13 — Monitoring snapshot](Screenshots/Screenshot%202026-02-27%20085848.png)
 
 ---
 
@@ -386,7 +386,7 @@ awk -F '"' '{print $6}' /var/log/nginx/*access.log 2>/dev/null | sort | uniq -c 
 
 **Result:** Log directory contained `access.log`, `app.access.log`, `error.log`, `site1.access.log`, and rotated versions. Analysis results were saved to report files.
 
-![Step 14 — Log analysis](Screenshot%202026-02-27%20085919.png)
+![Step 14 — Log analysis](Screenshots/Screenshot%202026-02-27%20085919.png)
 
 ---
 
@@ -414,7 +414,7 @@ grep -h " 404 " /var/log/nginx/*access.log 2>/dev/null | awk '{print $7}' | sort
 
 **Result:** All requests returned `HTTP/1.1 404 Not Found` from `Server: nginx` (version hidden due to `server_tokens off`). Security headers (X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy) were present in all responses.
 
-![Step 15 — 404 testing and analysis](Screenshot%202026-02-27%20090036.png)
+![Step 15 — 404 testing and analysis](Screenshots/Screenshot%202026-02-27%20090036.png)
 
 ---
 
@@ -428,7 +428,7 @@ sudo apt install nodejs npm -y
 
 **Result:** Node.js and npm along with their dependencies (`build-essential`, `node-gyp`, etc.) were installed.
 
-![Step 16 — Node.js installation](Screenshot%202026-02-27%20090049.png)
+![Step 16 — Node.js installation](Screenshots/Screenshot%202026-02-27%20090049.png)
 
 ---
 
@@ -472,7 +472,7 @@ sudo nginx -t && sudo systemctl reload nginx
 
 **Result:** Backend was started with PID `10073`. API proxy configuration was created, symlinked, and `api.local` was added to `/etc/hosts`. Nginx test and reload succeeded.
 
-![Step 17 — Backend and API proxy setup](Screenshot%202026-02-27%20090151.png)
+![Step 17 — Backend and API proxy setup](Screenshots/Screenshot%202026-02-27%20090151.png)
 
 ---
 
@@ -501,7 +501,7 @@ curl http://api.local/test | jq . || curl http://api.local/test
 
 Both requests returned `200 OK` with correct JSON responses, confirming the reverse proxy is working.
 
-![Step 18 — API curl tests](Screenshot%202026-02-27%20090246.png)
+![Step 18 — API curl tests](Screenshots/Screenshot%202026-02-27%20090246.png)
 
 ---
 
@@ -561,7 +561,7 @@ server {
 }
 ```
 
-![Step 19 — Second backend and service2 proxy](Screenshot%202026-02-27%20090444.png)
+![Step 19 — Second backend and service2 proxy](Screenshots/Screenshot%202026-02-27%20090444.png)
 
 ---
 
@@ -604,7 +604,7 @@ echo "Ports 3002 and 3003 are not accessible externally - only through Nginx!"
 
 Both reverse proxies are working correctly. Ports 3002 and 3003 are only accessible internally through Nginx.
 
-![Step 20 — Testing both proxies](Screenshot%202026-02-27%20090733.png)
+![Step 20 — Testing both proxies](Screenshots/Screenshot%202026-02-27%20090733.png)
 
 ---
 
@@ -660,8 +660,8 @@ server {
 }
 ```
 
-![Step 21a — Rate limiting config](Screenshot%202026-02-27%20090858.png)
-![Step 21b — Reload and update site configs](Screenshot%202026-02-27%20090926.png)
+![Step 21a — Rate limiting config](Screenshots/Screenshot%202026-02-27%20090858.png)
+![Step 21b — Reload and update site configs](Screenshots/Screenshot%202026-02-27%20090926.png)
 
 ---
 
@@ -687,7 +687,7 @@ sudo tail -f /var/log/nginx/error.log | grep -i "limiting" &
 
 **Result:** Error log confirmed rate limiting messages being logged.
 
-![Step 22 — Rate limiting test](Screenshot%202026-02-27%20091046.png)
+![Step 22 — Rate limiting test](Screenshots/Screenshot%202026-02-27%20091046.png)
 
 ---
 
@@ -737,7 +737,7 @@ curl http://api.local/ | jq . || curl http://api.local/
 
 **Result:** After stopping Backend 1, the response showed `502 Bad Gateway`, demonstrating that when the primary backend goes down and the backup is not available on port 3001, Nginx correctly returns an error.
 
-![Step 24a — Health check testing](Screenshot%202026-02-27%20091128.png)
+![Step 24a — Health check testing](Screenshots/Screenshot%202026-02-27%20091128.png)
 
 ---
 
@@ -751,7 +751,7 @@ echo "Backend 1 restarted"
 
 **Result:** Backend 1 was restarted and service recovered.
 
-![Step 25 — Backend restart](Screenshot%202026-02-27%20091150.png)
+![Step 25 — Backend restart](Screenshots/Screenshot%202026-02-27%20091150.png)
 
 ---
 
@@ -837,7 +837,7 @@ kill $BACKEND_PID 2>/dev/null || true
 kill $BACKEND2_PID 2>/dev/null || true
 ```
 
-![Steps 26-28 — Deploy, backup, cron, cleanup](Screenshot%202026-02-27%20091150.png)
+![Steps 26-28 — Deploy, backup, cron, cleanup](Screenshots/Screenshot%202026-02-27%20091150.png)
 
 ---
 

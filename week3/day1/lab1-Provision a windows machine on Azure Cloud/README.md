@@ -17,9 +17,9 @@ In this lab, a Windows Server VM was provisioned on Microsoft Azure, connected v
 
 3. Click **Review + create** → **Create**
 
-![Part A — Resource Groups page](Screenshot%202026-03-03%20084336.png)
+![Part A — Resource Groups page](Screenshots/Screenshot%202026-03-03%20084336.png)
 
-![Part A — Create resource group](Screenshot%202026-03-03%20084525.png)
+![Part A — Create resource group](Screenshots/Screenshot%202026-03-03%20084525.png)
 
 ---
 
@@ -45,13 +45,13 @@ Navigate to **Virtual machines** → **+ Create** → **Azure virtual machine**
 | **Public inbound ports** | Allow selected ports |
 | **Select inbound ports** | RDP (3389) |
 
-![Part B — Virtual machines Create page](Screenshot%202026-03-03%20084713.png)
+![Part B — Virtual machines Create page](Screenshots/Screenshot%202026-03-03%20084713.png)
 
-![Part B — Basics tab (Project & Instance details)](Screenshot%202026-03-03%20084858.png)
+![Part B — Basics tab (Project & Instance details)](Screenshots/Screenshot%202026-03-03%20084858.png)
 
-![Part B — Basics tab (Image, Size)](Screenshot%202026-03-03%20085620.png)
+![Part B — Basics tab (Image, Size)](Screenshots/Screenshot%202026-03-03%20085620.png)
 
-![Part B — Basics tab (Admin account, Inbound ports)](Screenshot%202026-03-03%20085633.png)
+![Part B — Basics tab (Admin account, Inbound ports)](Screenshots/Screenshot%202026-03-03%20085633.png)
 
 ### Disks Tab
 
@@ -60,7 +60,7 @@ Navigate to **Virtual machines** → **+ Create** → **Azure virtual machine**
 | **OS disk size** | Image default (127 GiB) |
 | **OS disk type** | Standard SSD (locally-redundant storage) |
 
-![Part B — Disks tab](Screenshot%202026-03-03%20085748.png)
+![Part B — Disks tab](Screenshots/Screenshot%202026-03-03%20085748.png)
 
 ### Networking Tab
 
@@ -73,7 +73,7 @@ Navigate to **Virtual machines** → **+ Create** → **Azure virtual machine**
 | **Public inbound ports** | Allow selected ports |
 | **Select inbound ports** | RDP (3389) |
 
-![Part B — Networking tab](Screenshot%202026-03-03%20085845.png)
+![Part B — Networking tab](Screenshots/Screenshot%202026-03-03%20085845.png)
 
 ### Review + Create
 
@@ -89,13 +89,13 @@ Validation passed. Estimated monthly cost: **$11.65** (Networking).
 
 Click **Create** to begin deployment.
 
-![Part B — Review + create (Validation passed)](Screenshot%202026-03-03%20090201.png)
+![Part B — Review + create (Validation passed)](Screenshots/Screenshot%202026-03-03%20090201.png)
 
 ### Deployment Complete
 
 Deployment completed successfully. Click **Go to resource** to view the VM.
 
-![Part B — Deployment complete](Screenshot%202026-03-03%20090446.png)
+![Part B — Deployment complete](Screenshots/Screenshot%202026-03-03%20090446.png)
 
 ---
 
@@ -117,7 +117,7 @@ On the VM Overview page, the Public IP address was noted for RDP connection.
 | **Architecture** | x64 |
 | **Time created** | 3/3/2026, 5:02 AM UTC |
 
-![Part C — VM Overview page](Screenshot%202026-03-03%20090553.png)
+![Part C — VM Overview page](Screenshots/Screenshot%202026-03-03%20090553.png)
 
 ---
 
@@ -135,21 +135,21 @@ Navigate to **Connect** → **Connect** on the VM page. Download the RDP file.
 | **VM port** | 3389 |
 | **Username** | mr-sakit |
 
-![Part D — Connect via RDP (Download RDP file)](Screenshot%202026-03-03%20091248.png)
+![Part D — Connect via RDP (Download RDP file)](Screenshots/Screenshot%202026-03-03%20091248.png)
 
 ### Step 2 — Accept Security Warnings
 
 Open the downloaded `.rdp` file. Accept the security warning to connect.
 
-![Part D — Remote Desktop Connection security warning](Screenshot%202026-03-03%20092008.png)
+![Part D — Remote Desktop Connection security warning](Screenshots/Screenshot%202026-03-03%20092008.png)
 
-![Part D — Certificate verification warning](Screenshot%202026-03-03%20092047.png)
+![Part D — Certificate verification warning](Screenshots/Screenshot%202026-03-03%20092047.png)
 
 ### Step 3 — Windows Desktop
 
 Successfully connected to the Windows Server VM via RDP. Server Manager opened automatically.
 
-![Part D — Windows Server desktop with Server Manager](Screenshot%202026-03-03%20092617.png)
+![Part D — Windows Server desktop with Server Manager](Screenshots/Screenshot%202026-03-03%20092617.png)
 
 ---
 
@@ -157,7 +157,7 @@ Successfully connected to the Windows Server VM via RDP. Server Manager opened a
 
 Inside the Windows VM, Settings and Windows Update were checked. Server Manager's **Add roles and features** was highlighted for the next step.
 
-![Part E — Settings, Windows Update, and Server Manager](Screenshot%202026-03-03%20093113.png)
+![Part E — Settings, Windows Update, and Server Manager](Screenshots/Screenshot%202026-03-03%20093113.png)
 
 ---
 
@@ -172,13 +172,13 @@ Inside the Windows VM, Settings and Windows Update were checked. Server Manager'
 5. **Confirmation:** Review features (IIS Management Console, Common HTTP Features, Static Content, etc.)
 6. Click **Install**
 
-![Part F — Installation Type](Screenshot%202026-03-03%20093226.png)
+![Part F — Installation Type](Screenshots/Screenshot%202026-03-03%20093226.png)
 
-![Part F — Server Selection](Screenshot%202026-03-03%20093338.png)
+![Part F — Server Selection](Screenshots/Screenshot%202026-03-03%20093338.png)
 
-![Part F — Server Roles (Web Server IIS)](Screenshot%202026-03-03%20093428.png)
+![Part F — Server Roles (Web Server IIS)](Screenshots/Screenshot%202026-03-03%20093428.png)
 
-![Part F — Confirm installation selections](Screenshot%202026-03-03%20093516.png)
+![Part F — Confirm installation selections](Screenshots/Screenshot%202026-03-03%20093516.png)
 
 ### Step 2 — Allow HTTP (Port 80) in NSG
 
@@ -194,15 +194,15 @@ Navigate to **VM** → **Networking** → **Network settings** → **Create port
 | **Priority** | 100 |
 | **Name** | `allow-http` |
 
-![Part F — Network settings (Add inbound port rule)](Screenshot%202026-03-03%20093806.png)
+![Part F — Network settings (Add inbound port rule)](Screenshots/Screenshot%202026-03-03%20093806.png)
 
-![Part F — Inbound security rule configuration](Screenshot%202026-03-03%20093926.png)
+![Part F — Inbound security rule configuration](Screenshots/Screenshot%202026-03-03%20093926.png)
 
 ### Step 3 — Verify IIS
 
 Open a browser and navigate to `http://68.210.98.126/`. The IIS default welcome page was displayed successfully — confirming HTTP inbound connectivity.
 
-![Part F — IIS default page verified](Screenshot%202026-03-03%20094150.png)
+![Part F — IIS default page verified](Screenshots/Screenshot%202026-03-03%20094150.png)
 
 ---
 

@@ -19,7 +19,7 @@ git log                         # View commit history
 
 **Result:** The `branch-for-lab` branch was successfully created and switched to using `git switch`. The `git log` output shows that the `HEAD` pointer is now pointing to the `branch-for-lab` branch.
 
-![Step 1 — Creating and switching to a branch](Screenshot1.png)
+![Step 1 — Creating and switching to a branch](Screenshots/Screenshot1.png)
 
 ---
 
@@ -40,7 +40,7 @@ git log                                                       # View commit hist
 
 **Result:** The `FAQ.md` file was successfully created and committed. The `git log` shows that the new commit exists only on `branch-for-lab`, while the `main` branch still points to the previous commit.
 
-![Step 2 — Creating FAQ.md and committing](Screenshot2.png)
+![Step 2 — Creating FAQ.md and committing](Screenshots/Screenshot2.png)
 
 ---
 
@@ -62,7 +62,7 @@ git commit -m "Update README.md file"    # Commit the changes
 
 **Result:** The first merge was performed as a "Fast-forward" — since there were no additional commits on `main`, the pointer was simply moved forward. This means `FAQ.md` was successfully added to the `main` branch. Afterwards, a `README.md` file was created and committed on `branch-for-lab`.
 
-![Step 3 — Merge and creating README.md](Screenshot3.png)
+![Step 3 — Merge and creating README.md](Screenshots/Screenshot3.png)
 
 ---
 
@@ -81,7 +81,7 @@ git branch -d branch-for-lab             # Delete the feature branch
 
 **Result:** The second merge was also a "Fast-forward", and the `README.md` file was added to the `main` branch. `git status` showed that `main` is ahead of `origin/main` by 2 commits. Finally, `branch-for-lab` was successfully deleted with `git branch -d`, since all its changes had already been merged.
 
-![Step 4 — Second merge and deleting the branch](Screenshot4.png)
+![Step 4 — Second merge and deleting the branch](Screenshots/Screenshot4.png)
 
 ---
 

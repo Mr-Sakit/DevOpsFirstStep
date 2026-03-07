@@ -16,7 +16,7 @@ echo "First line" > notes.txt
 echo "Second line" >> notes.txt
 ```
 
-![Part A — Creating vim-lab directory and notes.txt](Screenshot%202026-02-25%20111915.png)
+![Part A — Creating vim-lab directory and notes.txt](Screenshots/Screenshot%202026-02-25%20111915.png)
 
 ---
 
@@ -42,9 +42,9 @@ vi notes.txt
 3. Pressed `[Esc]` to return to Normal mode
 4. Saved and quit with `:wq`
 
-![Part B — notes.txt opened in vi](Screenshot%202026-02-25%20111945.png)
+![Part B — notes.txt opened in vi](Screenshots/Screenshot%202026-02-25%20111945.png)
 
-![Part B — Editing and saving with :wq](Screenshot%202026-02-25%20112050.png)
+![Part B — Editing and saving with :wq](Screenshots/Screenshot%202026-02-25%20112050.png)
 
 ### Key Save/Quit Commands
 
@@ -95,7 +95,7 @@ In Normal mode, the following navigation commands were practiced:
 
 > **Note:** Line numbers are a view-only setting — they do not modify the file content.
 
-![Part C — Line numbers enabled in vim](Screenshot%202026-02-25%20112919.png)
+![Part C — Line numbers enabled in vim](Screenshots/Screenshot%202026-02-25%20112919.png)
 
 ---
 
@@ -166,7 +166,7 @@ In Normal mode, the following navigation commands were practiced:
 3. Press `u` to undo, `Ctrl+R` to redo, `.` to repeat the last edit
 4. Save: `:w [Enter]`
 
-![Part E — Further editing in vim](Screenshot%202026-02-25%20113042.png)
+![Part E — Further editing in vim](Screenshots/Screenshot%202026-02-25%20113042.png)
 
 ---
 

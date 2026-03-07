@@ -114,7 +114,7 @@ ls -ld data               # Verify
 
 Despite this, `ls data` still listed `raw.csv` — because the **owner** ran the command and has full permissions.
 
-![Step 1–7 — Full lab execution](Screenshot1.png)
+![Step 1–7 — Full lab execution](Screenshots/Screenshot1.png)
 
 ---
 

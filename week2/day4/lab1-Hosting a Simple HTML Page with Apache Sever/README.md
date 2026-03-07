@@ -26,8 +26,8 @@ Before the web server can be accessed from the internet, an inbound port rule mu
 
 **Result:** A new inbound security rule `ApacheLabServer` was added to the NSG `rg-lab-azurevm-sakit-nsg`, allowing HTTP traffic on port 80.
 
-![Step 1a — Network settings with existing rules and Create port rule](Screenshot%202026-02-26%20092557.png)
-![Step 1b — Add inbound security rule form](Screenshot%202026-02-26%20092806.png)
+![Step 1a — Network settings with existing rules and Create port rule](Screenshots/Screenshot%202026-02-26%20092557.png)
+![Step 1b — Add inbound security rule form](Screenshots/Screenshot%202026-02-26%20092806.png)
 
 ---
 
@@ -43,8 +43,8 @@ sudo apt install -y apache2        # Install Apache2 web server
 
 **Result:** Package lists were fetched from `azure.archive.ubuntu.com`. Apache2 and its dependencies (`apache2-bin`, `apache2-data`, `apache2-utils`, `libapr1`, etc.) were installed successfully.
 
-![Step 2a — sudo apt update](Screenshot%202026-02-26%20101439.png)
-![Step 2b — sudo apt install -y apache2](Screenshot%202026-02-26%20101457.png)
+![Step 2a — sudo apt update](Screenshots/Screenshot%202026-02-26%20101439.png)
+![Step 2b — sudo apt install -y apache2](Screenshots/Screenshot%202026-02-26%20101457.png)
 
 ---
 
@@ -58,7 +58,7 @@ sudo systemctl status apache2
 
 **Result:** Apache was **active (running)** since `2026-02-26 06:10:52 UTC`. The service was loaded from `/lib/systemd/system/apache2.service` and enabled by default. Three worker processes were running under PID 2281.
 
-![Step 3 — Apache status: active (running)](Screenshot%202026-02-26%20101518.png)
+![Step 3 — Apache status: active (running)](Screenshots/Screenshot%202026-02-26%20101518.png)
 
 ---
 
@@ -89,7 +89,7 @@ echo '<!doctype html>
 
 **Result:** Apache was successfully stopped (`inactive (dead)`), then started again (`active (running)` with new PID 2624). The custom HTML file was written to `/var/www/html/index.html` using `echo | sudo tee`.
 
-![Step 4 — Stop, start, and deploy HTML](Screenshot%202026-02-26%20101536.png)
+![Step 4 — Stop, start, and deploy HTML](Screenshots/Screenshot%202026-02-26%20101536.png)
 
 ---
 
@@ -105,7 +105,7 @@ The custom HTML page was accessed from a browser by navigating to the VM's publi
 
 This confirms that Apache is serving the custom HTML page correctly and the NSG inbound rule for port 80 is working.
 
-![Step 5 — Browser showing the custom HTML page](Screenshot%202026-02-26%20101617.png)
+![Step 5 — Browser showing the custom HTML page](Screenshots/Screenshot%202026-02-26%20101617.png)
 
 ---
 
@@ -139,7 +139,7 @@ The log confirmed normal operations:
 - Graceful shutdown (`SIGWINCH`) recorded when stopped
 - Restart with new PID after `systemctl start`
 
-![Step 6 — curl headers, content, and error log](Screenshot%202026-02-26%20102033.png)
+![Step 6 — curl headers, content, and error log](Screenshots/Screenshot%202026-02-26%20102033.png)
 
 ---
 

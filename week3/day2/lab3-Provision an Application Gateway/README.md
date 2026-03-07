@@ -35,7 +35,7 @@ curl 20.54.84.106/site1/
 # Output: <h1>Site1 content from VM1 (path-based test)</h1>
 ```
 
-![Step 1 — VM1 content update and curl test](Screenshot%202026-03-05%20090338.png)
+![Step 1 — VM1 content update and curl test](Screenshots/Screenshot%202026-03-05%20090338.png)
 
 ### VM2 — Set Site2 Content
 
@@ -48,7 +48,7 @@ sudo mkdir -p /var/www/html/site2
 echo "<h1>Site2 content from VM2 (path-based test)</h1>" | sudo tee /var/www/html/site2/index.html
 ```
 
-![Step 1 — VM2 content update](Screenshot%202026-03-05%20090352.png)
+![Step 1 — VM2 content update](Screenshots/Screenshot%202026-03-05%20090352.png)
 
 ---
 
@@ -56,7 +56,7 @@ echo "<h1>Site2 content from VM2 (path-based test)</h1>" | sudo tee /var/www/htm
 
 Navigate to **Create a resource** → Search for **Application Gateway** → Click **Create**.
 
-![Step 2 — Application Gateway in Marketplace](Screenshot%202026-03-05%20090554.png)
+![Step 2 — Application Gateway in Marketplace](Screenshots/Screenshot%202026-03-05%20090554.png)
 
 ### Basics Tab
 
@@ -73,7 +73,7 @@ Navigate to **Create a resource** → Search for **Application Gateway** → Cli
 | **IP address type** | IPv4 only |
 | **HTTP2** | Enabled |
 
-![Step 2 — Basics tab (top)](Screenshot%202026-03-05%20090916.png)
+![Step 2 — Basics tab (top)](Screenshots/Screenshot%202026-03-05%20090916.png)
 
 #### Dedicated Subnet for Application Gateway
 
@@ -87,9 +87,9 @@ A new subnet was created within the existing VNet:
 | **Subnet name** | `devops-ag-subnet-sakit` |
 | **Address range** | `172.16.1.0/24` (172.16.1.0 – 172.16.1.255) |
 
-![Step 2 — Add dedicated subnet](Screenshot%202026-03-05%20091016.png)
+![Step 2 — Add dedicated subnet](Screenshots/Screenshot%202026-03-05%20091016.png)
 
-![Step 2 — Basics tab with VNet and subnet configured](Screenshot%202026-03-05%20091238.png)
+![Step 2 — Basics tab with VNet and subnet configured](Screenshots/Screenshot%202026-03-05%20091238.png)
 
 ### Frontends Tab
 
@@ -101,7 +101,7 @@ A new subnet was created within the existing VNet:
 | **Assignment** | Static |
 | **Availability zone** | ZoneRedundant |
 
-![Step 2 — Frontends tab with Public IP](Screenshot%202026-03-05%20091407.png)
+![Step 2 — Frontends tab with Public IP](Screenshots/Screenshot%202026-03-05%20091407.png)
 
 ### Backends Tab
 
@@ -115,7 +115,7 @@ Two separate backend pools were created — one per VM:
 | **Target type** | Virtual machine |
 | **Target** | `lb-vm1-sakit` (VM1 NIC) |
 
-![Step 2 — backendPool1 with VM1](Screenshot%202026-03-05%20091718.png)
+![Step 2 — backendPool1 with VM1](Screenshots/Screenshot%202026-03-05%20091718.png)
 
 #### Backend Pool 2 (VM2)
 
@@ -125,7 +125,7 @@ Two separate backend pools were created — one per VM:
 | **Target type** | Virtual machine |
 | **Target** | `lb-vm2-sakit` (VM2 NIC) |
 
-![Step 2 — backendPool2 with VM2](Screenshot%202026-03-05%20091817.png)
+![Step 2 — backendPool2 with VM2](Screenshots/Screenshot%202026-03-05%20091817.png)
 
 ---
 
@@ -143,7 +143,7 @@ Two separate backend pools were created — one per VM:
 | **Port** | 80 |
 | **Listener type** | Basic |
 
-![Step 3 — Listener configuration](Screenshot%202026-03-05%20092831.png)
+![Step 3 — Listener configuration](Screenshots/Screenshot%202026-03-05%20092831.png)
 
 ### Add Backend Settings
 
@@ -157,7 +157,7 @@ Two separate backend pools were created — one per VM:
 | **Request time-out** | 20 seconds |
 | **Override with new host name** | No |
 
-![Step 3 — Backend settings](Screenshot%202026-03-05%20093527.png)
+![Step 3 — Backend settings](Screenshots/Screenshot%202026-03-05%20093527.png)
 
 ### Configure Backend Targets and Path-Based Routing
 
@@ -169,7 +169,7 @@ Two separate backend pools were created — one per VM:
 | **Backend target** | `backendPool1` (VM1) |
 | **Backend settings** | `backend_settings` |
 
-![Step 3 — Default backend target (backendPool1)](Screenshot%202026-03-05%20093914.png)
+![Step 3 — Default backend target (backendPool1)](Screenshots/Screenshot%202026-03-05%20093914.png)
 
 Click **"Add multiple targets to create a path-based rule"** to enable path-based routing.
 
@@ -182,7 +182,7 @@ Click **"Add multiple targets to create a path-based rule"** to enable path-base
 | **Backend settings** | `backend_settings` |
 | **Backend target** | `backendPool2` |
 
-![Step 3 — Path rule for /site2/* to backendPool2](Screenshot%202026-03-05%20094303.png)
+![Step 3 — Path rule for /site2/* to backendPool2](Screenshots/Screenshot%202026-03-05%20094303.png)
 
 #### Final Routing Rule Summary
 
@@ -194,7 +194,7 @@ After adding path rules for both `/site1/*` and `/site2/*`:
 | `/site1/*` | Site1Rule | backend_settings | backendPool1 |
 | Default | — | backend_settings | backendPool1 |
 
-![Step 3 — Complete routing rule with path-based rules](Screenshot%202026-03-05%20095502.png)
+![Step 3 — Complete routing rule with path-based rules](Screenshots/Screenshot%202026-03-05%20095502.png)
 
 ---
 
@@ -212,7 +212,7 @@ Validation passed. Summary of the Application Gateway configuration:
 | | Subnet | `devops-ag-subnet-sakit` (172.16.1.0/24) |
 | **Frontends** | Public IP | `devops-ag-publicip-sakit` (Standard, Static) |
 
-![Step 4 — Review + create (Validation passed)](Screenshot%202026-03-05%20095547.png)
+![Step 4 — Review + create (Validation passed)](Screenshots/Screenshot%202026-03-05%20095547.png)
 
 ---
 
@@ -238,7 +238,7 @@ URL: `http://20.82.210.216/site2/`
 
 **Result:** "Site2 content from VM2 (path-based test)" → Routed to **VM2** via Site2Rule ✅
 
-![Step 5 — All three test results showing path-based routing](Screenshot%202026-03-05%20102501.png)
+![Step 5 — All three test results showing path-based routing](Screenshots/Screenshot%202026-03-05%20102501.png)
 
 ---
 

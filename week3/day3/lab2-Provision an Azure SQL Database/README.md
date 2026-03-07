@@ -16,7 +16,7 @@ Navigate to **Resource groups** → **Create**:
 | **Resource group name** | `rg-sql-lab-sakit` |
 | **Region** | (Europe) North Europe |
 
-![Step 1 — Create resource group](Screenshot%202026-03-05%20114649.png)
+![Step 1 — Create resource group](Screenshots/Screenshot%202026-03-05%20114649.png)
 
 ---
 
@@ -24,7 +24,7 @@ Navigate to **Resource groups** → **Create**:
 
 Navigate to **Azure SQL** → **SQL databases** → **Create** → **SQL database**:
 
-![Step 2 — Azure SQL databases page](Screenshot%202026-03-05%20114746.png)
+![Step 2 — Azure SQL databases page](Screenshots/Screenshot%202026-03-05%20114746.png)
 
 ### Basics Tab
 
@@ -39,7 +39,7 @@ Navigate to **Azure SQL** → **SQL databases** → **Create** → **SQL databas
 | **Compute + storage** | General Purpose – Serverless (Gen5, 1 vCore, 32 GB storage) |
 | **Backup storage redundancy** | Locally-redundant backup storage |
 
-![Step 2 — Basics tab (database name, server creation)](Screenshot%202026-03-05%20114925.png)
+![Step 2 — Basics tab (database name, server creation)](Screenshots/Screenshot%202026-03-05%20114925.png)
 
 ### Create SQL Server
 
@@ -51,11 +51,11 @@ Navigate to **Azure SQL** → **SQL databases** → **Create** → **SQL databas
 | **Server admin login** | `mr-sakit` |
 | **Password** | ●●●●●●●●●● |
 
-![Step 2 — Create SQL Server](Screenshot%202026-03-05%20115133.png)
+![Step 2 — Create SQL Server](Screenshots/Screenshot%202026-03-05%20115133.png)
 
 ### Basics Tab (after server creation)
 
-![Step 2 — Basics tab complete with server](Screenshot%202026-03-05%20115236.png)
+![Step 2 — Basics tab complete with server](Screenshots/Screenshot%202026-03-05%20115236.png)
 
 ### Networking Tab
 
@@ -79,7 +79,7 @@ Navigate to **Azure SQL** → **SQL databases** → **Create** → **SQL databas
 
 > **Note:** Serverless databases are billed based on vCore-seconds consumed, making them cost-effective for intermittent workloads.
 
-![Step 2 — Networking tab](Screenshot%202026-03-05%20115430.png)
+![Step 2 — Networking tab](Screenshots/Screenshot%202026-03-05%20115430.png)
 
 ### Additional Settings Tab
 
@@ -90,11 +90,11 @@ Navigate to **Azure SQL** → **SQL databases** → **Create** → **SQL databas
 
 > **AdventureWorksLT** is a sample database with tables like `Customer`, `Product`, `SalesOrderHeader`, etc. — great for learning SQL queries.
 
-![Step 2 — Additional settings (sample data)](Screenshot%202026-03-05%20115538.png)
+![Step 2 — Additional settings (sample data)](Screenshots/Screenshot%202026-03-05%20115538.png)
 
 ### Deployment Complete
 
-![Step 2 — Deployment complete](Screenshot%202026-03-05%20115846.png)
+![Step 2 — Deployment complete](Screenshots/Screenshot%202026-03-05%20115846.png)
 
 ---
 
@@ -111,7 +111,7 @@ After deployment, the overview page shows:
 | **Pricing tier** | General Purpose – Serverless: Gen5, 1 vCore |
 | **Auto-pause delay** | 1 hour |
 
-![Step 3 — Database overview](Screenshot%202026-03-05%20115923.png)
+![Step 3 — Database overview](Screenshots/Screenshot%202026-03-05%20115923.png)
 
 ---
 
@@ -129,7 +129,7 @@ Click **Set server firewall** on the database overview page → **Networking** �
 
 Click **OK** → **Save**.
 
-![Step 4 — Firewall rule (allow all IPs for lab)](Screenshot%202026-03-05%20120045.png)
+![Step 4 — Firewall rule (allow all IPs for lab)](Screenshots/Screenshot%202026-03-05%20120045.png)
 
 ---
 
@@ -137,7 +137,7 @@ Click **OK** → **Save**.
 
 ### 5.1 — Open Azure Data Studio
 
-![Step 5.1 — Azure Data Studio welcome page](Screenshot%202026-03-05%20122000.png)
+![Step 5.1 — Azure Data Studio welcome page](Screenshots/Screenshot%202026-03-05%20122000.png)
 
 ### 5.2 — Create a New Connection
 
@@ -160,7 +160,7 @@ Click **Create a connection** → Fill in the connection details:
 
 Click **Connect**.
 
-![Step 5.2 — Connection dialog with SQL Login details](Screenshot%202026-03-05%20122430.png)
+![Step 5.2 — Connection dialog with SQL Login details](Screenshots/Screenshot%202026-03-05%20122430.png)
 
 ### 5.3 — Verify Connection
 
@@ -187,7 +187,7 @@ After connecting, both **Azure Portal Query editor** and **Azure Data Studio** s
 
 **Stored Procedures:** uspLogError, uspPrintError
 
-![Step 5.3 — Connected — Tables and views visible in both Portal and ADS](Screenshot%202026-03-05%20122636.png)
+![Step 5.3 — Connected — Tables and views visible in both Portal and ADS](Screenshots/Screenshot%202026-03-05%20122636.png)
 
 ---
 

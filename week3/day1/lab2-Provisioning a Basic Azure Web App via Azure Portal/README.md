@@ -15,7 +15,7 @@ Navigate to [https://portal.azure.com](https://portal.azure.com) and sign in wit
 1. On the Azure Portal dashboard, click **App Services**
 2. Click **+ Create** → select **Web App**
 
-![Step 2 — App Services → Create Web App](Screenshot%202026-03-03%20102907.png)
+![Step 2 — App Services → Create Web App](Screenshots/Screenshot%202026-03-03%20102907.png)
 
 ---
 
@@ -37,7 +37,7 @@ Navigate to [https://portal.azure.com](https://portal.azure.com) and sign in wit
 
 > **Note:** The web app name must be globally unique. The URL will be: `https://sakit-webapp-ava2hmbqczckgvd7.austriaeast-01.azurewebsites.net`
 
-![Step 3 — Create Web App (Basics tab)](Screenshot%202026-03-03%20103650.png)
+![Step 3 — Create Web App (Basics tab)](Screenshots/Screenshot%202026-03-03%20103650.png)
 
 ---
 
@@ -62,13 +62,13 @@ The Review + create page summarizes all settings:
 
 Click **Create** to begin provisioning.
 
-![Step 4 — Review + create](Screenshot%202026-03-03%20103753.png)
+![Step 4 — Review + create](Screenshots/Screenshot%202026-03-03%20103753.png)
 
 ### Deployment Complete
 
 Deployment completed successfully. Click **Go to resource**.
 
-![Step 4 — Deployment complete](Screenshot%202026-03-03%20104032.png)
+![Step 4 — Deployment complete](Screenshots/Screenshot%202026-03-03%20104032.png)
 
 ---
 
@@ -89,7 +89,7 @@ Deployment completed successfully. Click **Go to resource**.
 | **Publishing model** | Code |
 | **Virtual IP address** | 68.210.171.1 |
 
-![Step 5 — Web App Overview page](Screenshot%202026-03-03%20104645.png)
+![Step 5 — Web App Overview page](Screenshots/Screenshot%202026-03-03%20104645.png)
 
 ### Default Landing Page
 
@@ -97,7 +97,7 @@ Click **Browse** to open the web app URL. The Azure default welcome page was dis
 
 > **"Your web app is running and waiting for your content"**
 
-![Step 5 — Default Azure Web App page](Screenshot%202026-03-03%20104656.png)
+![Step 5 — Default Azure Web App page](Screenshots/Screenshot%202026-03-03%20104656.png)
 
 ---
 
@@ -114,9 +114,9 @@ Click **Browse** to open the web app URL. The Azure default welcome page was dis
 | **Repository name** | `sample-nodejs-app-ih` |
 | **Branch** | Copy the `main` branch only |
 
-![Step 6.1 — Fork the repository](Screenshot%202026-03-03%20105113.png)
+![Step 6.1 — Fork the repository](Screenshots/Screenshot%202026-03-03%20105113.png)
 
-![Step 6.1 — Create a new fork](Screenshot%202026-03-03%20105146.png)
+![Step 6.1 — Create a new fork](Screenshots/Screenshot%202026-03-03%20105146.png)
 
 ### 6.2 — Configure Deployment Center
 
@@ -136,7 +136,7 @@ Navigate to **Deployment** → **Deployment Center** in the Web App and configur
 | **Subscription** | IDDAB2G |
 | **Identity** | (New) oidc-msi-b38c |
 
-![Step 6.2 — Deployment Center configuration](Screenshot%202026-03-03%20105902.png)
+![Step 6.2 — Deployment Center configuration](Screenshots/Screenshot%202026-03-03%20105902.png)
 
 ### 6.3 — Verify GitHub Actions Workflow
 
@@ -149,7 +149,7 @@ Save the settings. Navigate to the forked GitHub repository → **Actions** tab.
 
 > The first deployment attempt failed, but a subsequent workflow update resolved the issue.
 
-![Step 6.3 — GitHub Actions workflow runs](Screenshot%202026-03-03%20112235.png)
+![Step 6.3 — GitHub Actions workflow runs](Screenshots/Screenshot%202026-03-03%20112235.png)
 
 ### 6.4 — Verify Deployed Application
 
@@ -165,11 +165,11 @@ After the successful deployment, the Deployment Center shows the connected GitHu
 | **Runtime stack** | Node |
 | **Version** | 20-lts |
 
-![Step 6.4 — Deployment Center (connected)](Screenshot%202026-03-03%20112246.png)
+![Step 6.4 — Deployment Center (connected)](Screenshots/Screenshot%202026-03-03%20112246.png)
 
 Navigate to the URL and refresh — the **DevOps Bootcamp Showcase** application is now live! 🎉
 
-![Step 6.4 — Deployed Node.js application](Screenshot%202026-03-03%20112313.png)
+![Step 6.4 — Deployed Node.js application](Screenshots/Screenshot%202026-03-03%20112313.png)
 
 ---
 

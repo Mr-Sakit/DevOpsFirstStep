@@ -23,7 +23,7 @@ pwd                                                     # Confirm location
 - Shell: `/bin/bash`
 - Current directory confirmed as `/home/sakit/nav-lab`
 
-![Step 1 — System info and nav-lab setup](Screenshot1.png)
+![Step 1 — System info and nav-lab setup](Screenshots/Screenshot1.png)
 
 ---
 
@@ -40,7 +40,7 @@ ls                                         # List contents
 
 **Result:** Two top-level directories were created: `projects` and `sandbox`. Inside `projects/app/`, three subdirectories (`src`, `docs`, `logs`) were created in one command using brace expansion `{src,docs,logs}`.
 
-![Step 2 — Creating directory structure](Screenshot2.png)
+![Step 2 — Creating directory structure](Screenshots/Screenshot2.png)
 
 ---
 
@@ -57,7 +57,7 @@ ls                                                                          # Li
 
 **Result:** Files were created across different directories in one command. `echo` with `>` redirection created `WELCOME.txt` with the text "Welcome to the lab". `ls` showed: `WELCOME.txt`, `projects`, `sandbox`.
 
-![Step 3 — Creating files](Screenshot3.png)
+![Step 3 — Creating files](Screenshots/Screenshot3.png)
 
 ---
 
@@ -76,7 +76,7 @@ ls -la      # Long listing including hidden files (. and ..)
 - `ls -la` additionally showed hidden entries: `.` (current directory) and `..` (parent directory)
 - `WELCOME.txt` has permissions `-rw-r--r--` (read-only for group and others)
 
-![Step 4 — ls -l and ls -la output](Screenshot4.png)
+![Step 4 — ls -l and ls -la output](Screenshots/Screenshot4.png)
 
 ---
 
@@ -105,7 +105,7 @@ cd ~/nav-lab             # Return to nav-lab using ~ shortcut
 - `cd -` toggles back to the previous directory
 - Absolute paths (e.g., `/etc`) can be used to navigate anywhere
 
-![Step 5 — Directory navigation](Screenshot5.png)
+![Step 5 — Directory navigation](Screenshots/Screenshot5.png)
 
 ---
 
@@ -134,7 +134,7 @@ ls p*        # List items starting with 'p'
 - `ls *.txt` matched only `WELCOME.txt`
 - `ls p*` matched the `projects` directory, showing its contents (`app`)
 
-![Step 6 — Recursive listing, sorting, and wildcards](Screenshot6.png)
+![Step 6 — Recursive listing, sorting, and wildcards](Screenshots/Screenshot6.png)
 
 ---
 
@@ -167,7 +167,7 @@ rm -rI ~/nav-lab                                     # Attempt recursive delete 
 - `$(whoami)` dynamically inserts the current username (`sakit`) into the path
 - `rm -rI` prompted for confirmation: "remove 1 argument recursively?" — answered `n` to cancel
 
-![Step 7 — File viewing, hidden files, and cleanup](Screenshot7.png)
+![Step 7 — File viewing, hidden files, and cleanup](Screenshots/Screenshot7.png)
 
 ---
 

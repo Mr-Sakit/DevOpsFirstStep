@@ -50,7 +50,7 @@ cat "$HOME/lab7-outputs/lab7.log"
 
 The log file was generated successfully, recording all actions with timestamps.
 
-![Part A — common.sh creation, source, and log test](Screenshot%202026-03-07%20135251.png)
+![Part A — common.sh creation, source, and log test](Screenshots/Screenshot%202026-03-07%20135251.png)
 
 ---
 
@@ -92,9 +92,9 @@ ls -la "$HOME/lab7-outputs/"
 
 The script successfully found `.log` files, created an archive (`archive-*.tgz`), and applied retention policy.
 
-![Part B — fm_tool.sh script content (top half)](Screenshot%202026-03-07%20135348.png)
+![Part B — fm_tool.sh script content (top half)](Screenshots/Screenshot%202026-03-07%20135348.png)
 
-![Part B — fm_tool.sh test: demo files, archive, outputs](Screenshot%202026-03-07%20135422.png)
+![Part B — fm_tool.sh test: demo files, archive, outputs](Screenshots/Screenshot%202026-03-07%20135422.png)
 
 ---
 
@@ -132,7 +132,7 @@ tail -15 "$HOME/lab7-outputs/lab7.log"
 
 The script detected the background `sleep` process and logged its PID, CPU%, and memory usage across 3 samples.
 
-![Part C — proc_watch.sh script content and test results](Screenshot%202026-03-07%20135446.png)
+![Part C — proc_watch.sh script content and test results](Screenshots/Screenshot%202026-03-07%20135446.png)
 
 ---
 
@@ -169,7 +169,7 @@ ls -lh "$HOME/lab7-outputs/"
 
 The backup archive was created and verified successfully. The `tmp` directory was excluded, and retention policy kept only the 3 latest backups.
 
-![Part D — backup.sh script content and test results](Screenshot%202026-03-07%20135508.png)
+![Part D — backup.sh script content and test results](Screenshots/Screenshot%202026-03-07%20135508.png)
 
 ---
 
@@ -208,9 +208,9 @@ head -10 "$HOME/lab7-outputs/top-error-times.txt"
 
 The parser successfully analyzed `/var/log/syslog` and produced summary files showing the most frequent programs (e.g., `change`, `Daemon:`, `wsl-pro.service`) and error timestamps.
 
-![Part E — log_parse.sh script content](Screenshot%202026-03-07%20135535.png)
+![Part E — log_parse.sh script content](Screenshots/Screenshot%202026-03-07%20135535.png)
 
-![Part E — log parsing output: top-programs.txt and top-error-times.txt](Screenshot%202026-03-07%20135545.png)
+![Part E — log parsing output: top-programs.txt and top-error-times.txt](Screenshots/Screenshot%202026-03-07%20135545.png)
 
 ---
 
@@ -238,7 +238,7 @@ crontab -l | tee "$CRON_FILE"
 
 The cron entries were installed and exported to `lab7-cron.txt`.
 
-![Part F — Cron job setup and verification](Screenshot%202026-03-07%20135558.png)
+![Part F — Cron job setup and verification](Screenshots/Screenshot%202026-03-07%20135558.png)
 
 ---
 
@@ -258,7 +258,7 @@ cat "$HOME/lab7-outputs/lab7.log"
 
 All tools executed successfully, and final output directory contained all generated artifacts.
 
-![Part G — End-to-End Runbook execution and final outputs](Screenshot%202026-03-07%20135617.png)
+![Part G — End-to-End Runbook execution and final outputs](Screenshots/Screenshot%202026-03-07%20135617.png)
 
 ---
 
@@ -288,4 +288,4 @@ cp -r "$HOME/lab7-outputs/"* "/mnt/c/.../week2/day5/lab3/lab7-outputs/"
 - `top-programs.txt` — Syslog program frequency report
 - `top-error-times.txt` — Syslog timestamp analysis
 
-![Final output — scripts and lab7-outputs copied to lab3 directory](Screenshot%202026-03-07%20135633.png)
+![Final output — scripts and lab7-outputs copied to lab3 directory](Screenshots/Screenshot%202026-03-07%20135633.png)

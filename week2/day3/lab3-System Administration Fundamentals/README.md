@@ -53,7 +53,7 @@ uptime                       # System uptime
 | **Home (~)** | 140K |
 | **Uptime** | 2 min, 1 user, load average: 0.15, 0.17, 0.07 |
 
-![Steps 1-3 — System information](Screenshot%202026-03-02%20092244.png)
+![Steps 1-3 — System information](Screenshots/Screenshot%202026-03-02%20092244.png)
 
 ---
 
@@ -66,7 +66,7 @@ mkdir -p ~/sys-admin-lab         # Create lab directory
 cd ~/sys-admin-lab               # Navigate into it
 ```
 
-![Step 4 — Directory creation](Screenshot%202026-03-02%20092751.png)
+![Step 4 — Directory creation](Screenshots/Screenshot%202026-03-02%20092751.png)
 
 ---
 
@@ -116,7 +116,7 @@ sudo apt update              # Update package lists
 
 **Result:** Package lists were fetched from `azure.archive.ubuntu.com`.
 
-![Steps 5-6 — System report and apt update](Screenshot%202026-03-02%20092811.png)
+![Steps 5-6 — System report and apt update](Screenshots/Screenshot%202026-03-02%20092811.png)
 
 ---
 
@@ -141,7 +141,7 @@ htop --version               # Check version
 - **Path:** `/usr/bin/htop`
 - **Version:** `htop 3.0.5`
 
-![Step 7 — htop search and install](Screenshot%202026-03-02%20092839.png)
+![Step 7 — htop search and install](Screenshots/Screenshot%202026-03-02%20092839.png)
 
 ---
 
@@ -159,7 +159,7 @@ wget --version | head -1     # GNU Wget 1.21.2
 tree --version               # tree v2.0.2
 ```
 
-![Step 8 — curl, wget, tree installation](Screenshot%202026-03-02%20092906.png)
+![Step 8 — curl, wget, tree installation](Screenshots/Screenshot%202026-03-02%20092906.png)
 
 ---
 
@@ -179,7 +179,7 @@ ps auxf | head -20           # Process tree view
 
 **Result:** `ps aux` showed the top processes — PID 1 (`/sbin/init`), kernel threads (`kthreadd`, `pool_workqueue_release`, `kworker`, `R-netns`). `ps auxf` displayed the same information in a tree structure.
 
-![Step 9 — Packages and processes](Screenshot%202026-03-02%20092922.png)
+![Step 9 — Packages and processes](Screenshots/Screenshot%202026-03-02%20092922.png)
 
 ---
 
@@ -198,7 +198,7 @@ top -n 5                     # top — 5 iterations
 - **RAM:** 7943.9 MiB total, 301.7 used, 6769.0 free
 - **Top CPU consumers:** `fail2ban-server` (PID 709), `top` (PID 2170), `systemd` (PID 1)
 
-![Step 10 — top command](Screenshot%202026-03-02%20093002.png)
+![Step 10 — top command](Screenshots/Screenshot%202026-03-02%20093002.png)
 
 ---
 
@@ -221,7 +221,7 @@ fg %1                        # Bring to foreground
 - `jobs` output: `[1]+ Running sleep 300 &`
 - `fg %1` brought it to the foreground
 
-![Step 11 — pstree and background jobs](Screenshot%202026-03-02%20093130.png)
+![Step 11 — pstree and background jobs](Screenshots/Screenshot%202026-03-02%20093130.png)
 
 ---
 
@@ -279,7 +279,7 @@ systemctl status ssh 2>/dev/null || systemctl status sshd 2>/dev/null
 
 SSH logs revealed multiple invalid login attempts from various IPs using usernames like `solana`, `ubuntu`, `solv`, `sol` — actively tracked by Fail2Ban.
 
-![Steps 12-14 — kill, systemctl, SSH status](Screenshot%202026-03-02%20093222.png)
+![Steps 12-14 — kill, systemctl, SSH status](Screenshots/Screenshot%202026-03-02%20093222.png)
 
 ---
 
@@ -306,7 +306,7 @@ systemctl status networking 2>/dev/null || systemctl status NetworkManager 2>/de
 
 **Result:** Neither service was found (Azure VM networking is managed by `cloud-init`).
 
-![Steps 15-16 — Web server and network checks](Screenshot%202026-03-02%20093246.png)
+![Steps 15-16 — Web server and network checks](Screenshots/Screenshot%202026-03-02%20093246.png)
 
 ---
 
@@ -343,7 +343,7 @@ System Time:
 Mon Mar  2 05:16:08 UTC 2026
 ```
 
-![Step 17 — check-services.sh](Screenshot%202026-03-02%20093349.png)
+![Step 17 — check-services.sh](Screenshots/Screenshot%202026-03-02%20093349.png)
 
 ---
 
@@ -364,7 +364,7 @@ ping -c 3 8.8.8.8            # Ping Google DNS
 - **Default Gateway:** `172.21.0.1 dev eth0`
 - **Ping:** 3 packets sent, 3 received, 0% loss, avg RTT: `1.256 ms`
 
-![Step 18 — Network information](Screenshot%202026-03-02%20093432.png)
+![Step 18 — Network information](Screenshots/Screenshot%202026-03-02%20093432.png)
 
 ---
 
@@ -381,7 +381,7 @@ host google.com 2>/dev/null || echo "host command not available"
 - **google.com IPv6:** `2a00:1450:4025:800::71`, `2a00:1450:4025:800::66`, `2a00:1450:4025:800::64`, `2a00:1450:4025:800::8b`
 - **Mail:** `google.com mail is handled by 10 smtp.google.com.`
 
-![Step 19 — DNS lookups](Screenshot%202026-03-02%20093442.png)
+![Step 19 — DNS lookups](Screenshots/Screenshot%202026-03-02%20093442.png)
 
 ---
 
@@ -447,7 +447,7 @@ Internet Connectivity:
 ✓ Internet accessible
 ```
 
-![Step 20 — Port checking and network-check.sh](Screenshot%202026-03-02%20093700.png)
+![Step 20 — Port checking and network-check.sh](Screenshots/Screenshot%202026-03-02%20093700.png)
 
 ---
 
@@ -484,7 +484,7 @@ cat /var/www/html/index.html
 
 **Result:** `index.html` was created in `/var/www/html/` (253 bytes). `ls -la` showed both `index.html` and `index.nginx-debian.html` present in the directory. File contents were verified.
 
-![Step 21 — Web server preparation](Screenshot%202026-03-02%20093719.png)
+![Step 21 — Web server preparation](Screenshots/Screenshot%202026-03-02%20093719.png)
 
 ---
 
@@ -523,7 +523,7 @@ cat lab3-summary.txt
 
 **Result:** The summary file was created and displayed successfully. Note that `$(...)` expressions were kept as literal text because `'EOF'` (single-quoted) was used, preventing variable expansion.
 
-![Step 22 — Lab3 summary](Screenshot%202026-03-02%20093727.png)
+![Step 22 — Lab3 summary](Screenshots/Screenshot%202026-03-02%20093727.png)
 
 ---
 

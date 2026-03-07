@@ -16,8 +16,8 @@ The Azure Portal was opened and **Resource groups** was selected from the left s
 
 All under subscription **IDDAB2G**, located in **East US**.
 
-![Step 1a — Azure Portal home with Resource groups](Screenshot1.png)
-![Step 1b — List of existing resource groups](Screenshot2.png)
+![Step 1a — Azure Portal home with Resource groups](Screenshots/Screenshot1.png)
+![Step 1b — List of existing resource groups](Screenshots/Screenshot2.png)
 
 ---
 
@@ -34,8 +34,8 @@ A new Resource Group was created to hold all resources for this lab.
 
 **Result:** The resource group was reviewed and created successfully.
 
-![Step 2a — Create a resource group form](Screenshot7.png)
-![Step 2b — Review + create confirmation](Screenshot8.png)
+![Step 2a — Create a resource group form](Screenshots/Screenshot7.png)
+![Step 2b — Review + create confirmation](Screenshots/Screenshot8.png)
 
 ---
 
@@ -43,7 +43,7 @@ A new Resource Group was created to hold all resources for this lab.
 
 In the Azure Portal search bar, "virt" was typed, and **Virtual machines** was selected from the search results under Services.
 
-![Step 3a — Searching for Virtual Machines](Screenshot4.png)
+![Step 3a — Searching for Virtual Machines](Screenshots/Screenshot4.png)
 
 ---
 
@@ -51,8 +51,8 @@ In the Azure Portal search bar, "virt" was typed, and **Virtual machines** was s
 
 From the Virtual Machines page, **+ Create** → **Virtual machine** was selected to begin the VM creation wizard.
 
-![Step 4a — Virtual Machines page with Create button](Screenshot5.png)
-![Step 4b — Create dropdown — selecting "Virtual machine"](Screenshot6.png)
+![Step 4a — Virtual Machines page with Create button](Screenshots/Screenshot5.png)
+![Step 4b — Create dropdown — selecting "Virtual machine"](Screenshots/Screenshot6.png)
 
 ---
 
@@ -67,7 +67,7 @@ From the Virtual Machines page, **+ Create** → **Virtual machine** was selecte
 | VM architecture | x64 |
 | Size | **Standard_D2s_v3** — 2 vCPUs, 8 GiB memory |
 
-![Step 5a — Image and size selection](Screenshot9.png)
+![Step 5a — Image and size selection](Screenshots/Screenshot9.png)
 
 ### Basics Tab — Administrator Account & Inbound Ports
 
@@ -81,7 +81,7 @@ From the Virtual Machines page, **+ Create** → **Virtual machine** was selecte
 | Public inbound ports | Allow selected ports |
 | Select inbound ports | **SSH (22)** |
 
-![Step 5b — Administrator account and SSH configuration](Screenshot10.png)
+![Step 5b — Administrator account and SSH configuration](Screenshots/Screenshot10.png)
 
 ### Disks Tab
 
@@ -92,7 +92,7 @@ From the Virtual Machines page, **+ Create** → **Virtual machine** was selecte
 | Delete with VM | ✅ Enabled |
 | Key management | Platform-managed key |
 
-![Step 5c — Disks configuration](Screenshot11.png)
+![Step 5c — Disks configuration](Screenshots/Screenshot11.png)
 
 ### Networking Tab
 
@@ -105,7 +105,7 @@ From the Virtual Machines page, **+ Create** → **Virtual machine** was selecte
 | Public inbound ports | Allow selected ports |
 | Select inbound ports | **SSH (22)** |
 
-![Step 5d — Networking configuration](Screenshot12.png)
+![Step 5d — Networking configuration](Screenshots/Screenshot12.png)
 
 ### Management Tab
 
@@ -118,8 +118,8 @@ From the Virtual Machines page, **+ Create** → **Virtual machine** was selecte
 | Notification before shutdown | ✅ Enabled |
 | Estimated monthly cost | **$208.27** |
 
-![Step 5e — Auto-shutdown settings](Screenshot13.png)
-![Step 5f — Management tab with cost estimate](Screenshot14.png)
+![Step 5e — Auto-shutdown settings](Screenshots/Screenshot13.png)
+![Step 5f — Management tab with cost estimate](Screenshots/Screenshot14.png)
 
 ---
 
@@ -127,11 +127,11 @@ From the Virtual Machines page, **+ Create** → **Virtual machine** was selecte
 
 The VM configuration was validated. **"Validation passed"** was displayed, confirming all settings were correct. The **Create** button was clicked.
 
-![Step 6a — Validation passed, Review + Create](Screenshot15.png)
+![Step 6a — Validation passed, Review + Create](Screenshots/Screenshot15.png)
 
 A dialog appeared to **Generate new key pair** — the SSH private key (`sakit_key.pem`) was downloaded and the resource was created.
 
-![Step 6b — Download private key and create resource](Screenshot16.png)
+![Step 6b — Download private key and create resource](Screenshots/Screenshot16.png)
 
 ### Deployment Progress
 
@@ -142,13 +142,13 @@ The deployment started and showed multiple resources being created:
 - `rg-lab-azurevm-sakit-ip` (Public IP)
 - `rg-lab-azurevm-sakit-ns...` (Network Security Group)
 
-![Step 6c — Deployment in progress](Screenshot17.png)
+![Step 6c — Deployment in progress](Screenshots/Screenshot17.png)
 
 ### Deployment Complete
 
 **"Deployment succeeded"** — the VM was successfully deployed to resource group `rg-lab-azurevm-sakit`.
 
-![Step 6d — Deployment succeeded](Screenshot18.png)
+![Step 6d — Deployment succeeded](Screenshots/Screenshot18.png)
 
 ---
 
@@ -166,8 +166,8 @@ After clicking **"Go to resource"**, the VM overview page was displayed with key
 | Public IP | **134.112.24.54** |
 | Time created | 2/24/2026, 8:32 AM UTC |
 
-![Step 7a — VM overview with public IP](Screenshot19.png)
-![Step 7b — VM overview full details](Screenshot21.png)
+![Step 7a — VM overview with public IP](Screenshots/Screenshot19.png)
+![Step 7b — VM overview full details](Screenshots/Screenshot21.png)
 
 ---
 
@@ -191,7 +191,7 @@ ssh -i sakit_key.pem mr-sakit@134.112.24.54   # Connect to VM via SSH
 
 The terminal prompt changed to `mr-sakit@rg-lab-azurevm-sakit:~$`, confirming a successful SSH connection.
 
-![Step 8 — SSH connection to the VM](Screenshot20.png)
+![Step 8 — SSH connection to the VM](Screenshots/Screenshot20.png)
 
 ---
 
@@ -207,8 +207,8 @@ Connection to 134.112.24.54 closed.
 
 The **Stop** button was highlighted in the Azure Portal VM overview page.
 
-![Step 9a — SSH connection closed](Screenshot22.png)
-![Step 9b — VM overview with Stop button highlighted](Screenshot21.png)
+![Step 9a — SSH connection closed](Screenshots/Screenshot22.png)
+![Step 9b — VM overview with Stop button highlighted](Screenshots/Screenshot21.png)
 
 ---
 
