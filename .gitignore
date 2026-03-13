@@ -1,0 +1,4 @@
+.gitignore
+rename_labs.ps1
+*.pdf
+*.png
