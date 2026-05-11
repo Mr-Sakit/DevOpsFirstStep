@@ -1,0 +1,12 @@
+variable "name_prefix" { type = string }
+variable "location" { type = string }
+variable "resource_group_name" { type = string }
+variable "resource_group_id" { type = string }
+variable "action_email" { type = string }
+variable "monthly_budget_amount" { type = number }
+variable "budget_start_date" { type = string }
+variable "app_gateway_id" { type = string }
+variable "frontend_vm_id" { type = string }
+variable "backend_vm_id" { type = string }
+variable "sql_database_id" { type = string }
+variable "tags" { type = map(string) }

@@ -1,0 +1,173 @@
+---
+- name: Create application directory
+  ansible.builtin.file:
+    path: "/opt/secureflow/{{ app_component }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"
+
+- name: Clear previous frontend build
+  ansible.builtin.file:
+    path: /var/www/html
+    state: absent
+  when: app_component == "frontend"
+
+- name: Recreate frontend web root
+  ansible.builtin.file:
+    path: /var/www/html
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: "0755"
+  when: app_component == "frontend"
+
+- name: Copy frontend artifact
+  ansible.builtin.unarchive:
+    src: "{{ lookup('env', 'FRONTEND_ARTIFACT') | default('../../../apps/frontend/dist.tar.gz', true) }}"
+    dest: /var/www/html
+    remote_src: false
+    owner: www-data
+    group: www-data
+  when: app_component == "frontend"
+
+- name: Render nginx default site
+  ansible.builtin.copy:
+    dest: /etc/nginx/sites-available/default
+    mode: "0644"
+    content: |
+      server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html;
+        server_tokens off;
+
+        location / {
+          try_files $uri /index.html;
+          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+          add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://dc.services.visualstudio.com https://*.in.applicationinsights.azure.com https://*.applicationinsights.azure.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header X-Frame-Options "DENY" always;
+          add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+          add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()" always;
+          add_header Cross-Origin-Opener-Policy "same-origin" always;
+          add_header Cross-Origin-Resource-Policy "same-origin" always;
+          add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate" always;
+        }
+
+        location /assets/ {
+          try_files $uri =404;
+          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header Cross-Origin-Resource-Policy "same-origin" always;
+          add_header Cache-Control "public, max-age=31536000, immutable" always;
+        }
+
+        location /health {
+          return 200 'ok';
+          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header Content-Type text/plain;
+        }
+      }
+  when: app_component == "frontend"
+
+- name: Copy backend jar
+  ansible.builtin.copy:
+    src: "{{ lookup('env', 'BACKEND_ARTIFACT') | default('../../../apps/backend/target/secureflow-docs-backend-0.1.0.jar', true) }}"
+    dest: /opt/secureflow/backend/secureflow-docs-api.jar
+    owner: www-data
+    group: www-data
+    mode: "0644"
+  when: app_component == "backend"
+
+- name: Request Key Vault access token with VM managed identity
+  ansible.builtin.uri:
+    url: "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://vault.azure.net"
+    method: GET
+    headers:
+      Metadata: "true"
+    return_content: true
+  register: key_vault_token_response
+  no_log: true
+  when: app_component == "backend"
+
+- name: Fetch backend secrets from Key Vault with managed identity
+  ansible.builtin.uri:
+    url: "{{ lookup('env', 'KEY_VAULT_URI') | default('https://kv-sfdocs-29c28e.vault.azure.net/', true) | regex_replace('/$', '') }}/secrets/{{ item.key_vault_name }}?api-version=7.4"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ key_vault_token_response.json.access_token }}"
+    return_content: true
+  loop:
+    - key_vault_name: sql-admin-login
+      fact_name: sql_admin_login
+    - key_vault_name: sql-admin-password
+      fact_name: sql_admin_password
+    - key_vault_name: application-insights-connection-string
+      fact_name: applicationinsights_connection_string
+    - key_vault_name: secureflow-default-password
+      fact_name: secureflow_default_password
+  register: backend_key_vault_secret_results
+  no_log: true
+  when: app_component == "backend"
+
+- name: Store backend Key Vault secrets as deployment facts
+  ansible.builtin.set_fact:
+    backend_key_vault_secrets: "{{ backend_key_vault_secrets | default({}) | combine({item.item.fact_name: item.json.value}) }}"
+  loop: "{{ backend_key_vault_secret_results.results }}"
+  no_log: true
+  when: app_component == "backend"
+
+- name: Create backend environment file
+  ansible.builtin.copy:
+    dest: /etc/secureflow-api.env
+    owner: root
+    group: root
+    mode: "0600"
+    content: |
+      SPRING_DATASOURCE_URL=jdbc:sqlserver://{{ lookup('env', 'SQL_SERVER_FQDN') }}:1433;database={{ lookup('env', 'SQL_DATABASE_NAME') | default('sqldb-secureflow-docs', true) }};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+      SPRING_DATASOURCE_USERNAME={{ backend_key_vault_secrets.sql_admin_login }}
+      SPRING_DATASOURCE_PASSWORD={{ backend_key_vault_secrets.sql_admin_password }}
+      APPLICATIONINSIGHTS_CONNECTION_STRING={{ backend_key_vault_secrets.applicationinsights_connection_string }}
+      SECUREFLOW_DEFAULT_PASSWORD={{ backend_key_vault_secrets.secureflow_default_password }}
+  no_log: true
+  when: app_component == "backend"
+
+- name: Render backend systemd service
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/secureflow-api.service
+    mode: "0644"
+    content: |
+      [Unit]
+      Description=SecureFlow Docs API
+      After=network.target
+
+      [Service]
+      User=www-data
+      WorkingDirectory=/opt/secureflow/backend
+      Environment=SERVER_PORT=8080
+      EnvironmentFile=-/etc/secureflow-api.env
+      ExecStart=/usr/bin/java -jar /opt/secureflow/backend/secureflow-docs-api.jar
+      Restart=always
+      RestartSec=10
+
+      [Install]
+      WantedBy=multi-user.target
+  when: app_component == "backend"
+
+- name: Start backend service
+  ansible.builtin.systemd:
+    name: secureflow-api
+    daemon_reload: true
+    enabled: true
+    state: restarted
+  when: app_component == "backend"
+
+- name: Ensure nginx serves frontend
+  ansible.builtin.service:
+    name: nginx
+    enabled: true
+    state: restarted
+  when: app_component == "frontend"

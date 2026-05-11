@@ -1,0 +1,44 @@
+---
+- name: Wait for package manager locks
+  ansible.builtin.shell: |
+    while sudo fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do
+      sleep 5
+    done
+  changed_when: false
+
+- name: Refresh apt cache when package indexes are reachable
+  ansible.builtin.shell: |
+    for attempt in 1 2; do
+      timeout 90 apt-get update && exit 0
+      sleep 10
+    done
+    exit 0
+  register: apt_cache_update
+  changed_when: "'Reading package lists' in apt_cache_update.stdout"
+  failed_when: false
+
+- name: Install baseline packages
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - unzip
+      - nginx
+      - openjdk-21-jre-headless
+    state: present
+    force_apt_get: true
+    update_cache: false
+    lock_timeout: 180
+
+- name: Ensure unattended security upgrades are installed
+  ansible.builtin.apt:
+    name: unattended-upgrades
+    state: present
+    update_cache: false
+    lock_timeout: 180
+
+- name: Enable unattended upgrades
+  ansible.builtin.service:
+    name: unattended-upgrades
+    enabled: true
+    state: started

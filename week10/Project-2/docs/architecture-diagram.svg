@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1150" font-family="'Segoe UI', Arial, sans-serif">
+  <!-- ================== DEFINITIONS ================== -->
+  <defs>
+    <!-- Arrow markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#243A5E"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D13438"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5C2D91"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#CA5010"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="rgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F3F9FD"/>
+      <stop offset="100%" stop-color="#E1EEF7"/>
+    </linearGradient>
+    <linearGradient id="vnetGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EAF3FB"/>
+      <stop offset="100%" stop-color="#D6E7F4"/>
+    </linearGradient>
+    <linearGradient id="appgwGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D13438"/>
+      <stop offset="100%" stop-color="#A4262C"/>
+    </linearGradient>
+    <linearGradient id="webGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF4E5"/>
+      <stop offset="100%" stop-color="#FFE3BF"/>
+    </linearGradient>
+    <linearGradient id="apiGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E5F2E5"/>
+      <stop offset="100%" stop-color="#C7E5C7"/>
+    </linearGradient>
+    <linearGradient id="dataGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EFE5F2"/>
+      <stop offset="100%" stop-color="#D9C2E0"/>
+    </linearGradient>
+    <linearGradient id="opsGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FCEDED"/>
+      <stop offset="100%" stop-color="#F4CFCF"/>
+    </linearGradient>
+    <linearGradient id="appgwSubGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFEAEC"/>
+      <stop offset="100%" stop-color="#F8C8CB"/>
+    </linearGradient>
+
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ================== BACKGROUND ================== -->
+  <rect width="1800" height="1150" fill="#FAFBFC"/>
+
+  <!-- ================== TITLE ================== -->
+  <text x="900" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#243A5E">SecureFlow Docs — Azure 3-Tier Reference Architecture</text>
+  <text x="900" y="66" text-anchor="middle" font-size="13" fill="#605E5C">Resource Group: group1_final  •  Region: Sweden Central  •  Single public ingress via Application Gateway (WAF v2)</text>
+
+  <!-- ================== LEGEND ================== -->
+  <g transform="translate(30, 88)">
+    <rect width="430" height="36" rx="6" fill="#FFFFFF" stroke="#D2D0CE"/>
+    <g font-size="11" fill="#323130">
+      <rect x="10" y="11" width="14" height="14" fill="#D13438"/>
+      <text x="30" y="22">Public ingress</text>
+      <rect x="120" y="11" width="14" height="14" fill="url(#webGrad)" stroke="#CA8A4F"/>
+      <text x="140" y="22">Web/API tier</text>
+      <rect x="225" y="11" width="14" height="14" fill="url(#dataGrad)" stroke="#5C2D91"/>
+      <text x="245" y="22">Data tier (private)</text>
+      <line x1="355" y1="18" x2="385" y2="18" stroke="#D13438" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="390" y="22">User traffic</text>
+    </g>
+  </g>
+
+  <!-- Right legend -->
+  <g transform="translate(1390, 88)">
+    <rect width="380" height="36" rx="6" fill="#FFFFFF" stroke="#D2D0CE"/>
+    <g font-size="11" fill="#323130">
+      <line x1="10" y1="17" x2="40" y2="17" stroke="#5C2D91" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="46" y="22">CI/CD flow</text>
+      <line x1="120" y1="17" x2="150" y2="17" stroke="#CA5010" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="156" y="22">Telemetry</text>
+      <line x1="220" y1="17" x2="250" y2="17" stroke="#107C10" stroke-width="2"/>
+      <text x="256" y="22">Private link</text>
+      <text x="335" y="22" font-weight="600">VNet 10.2.0.0/16</text>
+    </g>
+  </g>
+
+  <!-- ================== EXTERNAL: USERS & DEVS ================== -->
+  <g transform="translate(60, 145)">
+    <rect width="240" height="80" rx="10" fill="#FFFFFF" stroke="#605E5C" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="120" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#243A5E">End Users / Internet</text>
+    <!-- user icon -->
+    <g transform="translate(20, 36)">
+      <circle cx="14" cy="14" r="6" fill="#0078D4"/>
+      <path d="M 2 30 Q 14 18 26 30" fill="#0078D4"/>
+    </g>
+    <text x="60" y="58" font-size="11" fill="#323130">HTTPS to Application</text>
+    <text x="60" y="72" font-size="11" fill="#323130">Gateway public IP only</text>
+  </g>
+
+  <g transform="translate(1500, 145)">
+    <rect width="240" height="80" rx="10" fill="#FFFFFF" stroke="#5C2D91" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="120" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="#5C2D91">Developers · GitHub</text>
+    <g transform="translate(18, 36)" fill="#5C2D91">
+      <circle cx="14" cy="14" r="13" fill="#24292E"/>
+      <path d="M14 4 a10 10 0 0 0 -3.2 19.5 c0.5 0.1 0.7 -0.2 0.7 -0.5 v-1.7 c-2.8 0.6 -3.4 -1.3 -3.4 -1.3 c-0.5 -1.2 -1.1 -1.5 -1.1 -1.5 c-0.9 -0.6 0.1 -0.6 0.1 -0.6 c1 0.1 1.5 1 1.5 1 c0.9 1.5 2.3 1.1 2.9 0.8 c0.1 -0.6 0.3 -1.1 0.6 -1.3 c-2.2 -0.3 -4.6 -1.1 -4.6 -4.9 c0 -1.1 0.4 -2 1 -2.7 c-0.1 -0.3 -0.4 -1.3 0.1 -2.7 c0 0 0.8 -0.3 2.7 1 a9.5 9.5 0 0 1 5 0 c1.9 -1.3 2.7 -1 2.7 -1 c0.5 1.4 0.2 2.4 0.1 2.7 c0.6 0.7 1 1.6 1 2.7 c0 3.8 -2.4 4.6 -4.6 4.9 c0.4 0.3 0.7 0.9 0.7 1.9 v2.8 c0 0.3 0.2 0.6 0.7 0.5 A10 10 0 0 0 14 4 z" fill="#FFFFFF"/>
+    </g>
+    <text x="60" y="58" font-size="11" fill="#323130">GitHub Actions: infra,</text>
+    <text x="60" y="72" font-size="11" fill="#323130">frontend, backend deploys</text>
+  </g>
+
+  <!-- ================== RESOURCE GROUP CONTAINER ================== -->
+  <g>
+    <rect x="60" y="245" width="1680" height="775" rx="14" fill="url(#rgGrad)" stroke="#0078D4" stroke-width="2"/>
+    <rect x="60" y="245" width="280" height="28" rx="14" fill="#0078D4"/>
+    <text x="76" y="264" font-size="13" font-weight="700" fill="#FFFFFF">⬡  Resource Group · group1_final</text>
+  </g>
+
+  <!-- ================== PUBLIC IP (just inside RG) ================== -->
+  <g transform="translate(105, 295)">
+    <rect width="190" height="62" rx="8" fill="#FFFFFF" stroke="#D13438" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect width="190" height="22" rx="8" fill="#D13438"/>
+    <rect y="14" width="190" height="8" fill="#D13438"/>
+    <text x="95" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">Public IP (Standard)</text>
+    <text x="95" y="40" text-anchor="middle" font-size="11" font-weight="600" fill="#323130">pip-secureflow-dev-appgw</text>
+    <text x="95" y="54" text-anchor="middle" font-size="10" fill="#605E5C">Only ingress to platform</text>
+  </g>
+
+  <!-- NAT Gateway Public IP -->
+  <g transform="translate(105, 365)">
+    <rect width="190" height="48" rx="8" fill="#FFFFFF" stroke="#CA5010" stroke-width="1.2" filter="url(#shadow)"/>
+    <text x="95" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#CA5010">NAT Gateway</text>
+    <text x="95" y="32" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">nat-secureflow-dev-compute</text>
+    <text x="95" y="44" text-anchor="middle" font-size="9" fill="#605E5C">+ pip-secureflow-dev-nat (egress)</text>
+  </g>
+
+  <!-- ================== VNET CONTAINER ================== -->
+  <g>
+    <rect x="320" y="295" width="1180" height="700" rx="12" fill="url(#vnetGrad)" stroke="#0078D4" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <rect x="320" y="295" width="350" height="26" rx="13" fill="#243A5E"/>
+    <text x="335" y="313" font-size="12" font-weight="700" fill="#FFFFFF">⬢  VNet · group1-final-vnet · 10.2.0.0/16</text>
+  </g>
+
+  <!-- ============== SUBNET: snet-appgw ============== -->
+  <g>
+    <rect x="345" y="340" width="1130" height="120" rx="10" fill="url(#appgwSubGrad)" stroke="#D13438" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="360" y="358" font-size="12" font-weight="700" fill="#A4262C">snet-appgw  ·  10.2.1.0/24</text>
+
+    <!-- App Gateway WAF v2 -->
+    <g transform="translate(540, 366)">
+      <rect width="740" height="78" rx="10" fill="url(#appgwGrad)" filter="url(#shadow)"/>
+      <text x="370" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">🛡  Application Gateway (WAF v2)</text>
+      <text x="370" y="40" text-anchor="middle" font-size="11" fill="#FFFFFF" opacity="0.95">agw-secureflow-dev  ·  waf-secureflow-dev  ·  TLS terminate, OWASP rules, rate-limit (RateLimitLayer7Flood)</text>
+      <!-- Routing rules -->
+      <g transform="translate(40, 50)">
+        <rect width="290" height="20" rx="4" fill="#FFFFFF" opacity="0.92"/>
+        <text x="145" y="14" text-anchor="middle" font-size="11" font-weight="600" fill="#A4262C">Listener  /  →  frontend pool</text>
+      </g>
+      <g transform="translate(410, 50)">
+        <rect width="290" height="20" rx="4" fill="#FFFFFF" opacity="0.92"/>
+        <text x="145" y="14" text-anchor="middle" font-size="11" font-weight="600" fill="#A4262C">Listener  /api/*  →  backend pool</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============== SUBNET: snet-web (frontend) ============== -->
+  <g>
+    <rect x="345" y="480" width="540" height="200" rx="10" fill="url(#webGrad)" stroke="#CA8A4F" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="360" y="498" font-size="12" font-weight="700" fill="#7A4F1B">snet-web  ·  10.2.2.0/24  ·  Frontend tier</text>
+
+    <!-- ILB -->
+    <g transform="translate(370, 510)">
+      <rect width="200" height="68" rx="8" fill="#FFFFFF" stroke="#CA8A4F" stroke-width="1.4" filter="url(#shadow)"/>
+      <text x="100" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4F1B">⚖  Internal Load Balancer</text>
+      <text x="100" y="40" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">ilb-secureflow-dev-frontend</text>
+      <text x="100" y="56" text-anchor="middle" font-size="10" fill="#605E5C">Health probe :80 / nginx</text>
+    </g>
+
+    <!-- VMSS -->
+    <g transform="translate(620, 510)">
+      <rect width="240" height="150" rx="8" fill="#FFFFFF" stroke="#CA8A4F" stroke-width="1.4" filter="url(#shadow)"/>
+      <text x="120" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4F1B">VMSS  ·  Frontend</text>
+      <text x="120" y="38" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">vmss-secureflow-dev-frontend</text>
+      <!-- VM instances -->
+      <g transform="translate(20, 50)">
+        <rect width="60" height="40" rx="4" fill="#FFF4E5" stroke="#CA8A4F"/>
+        <text x="30" y="18" text-anchor="middle" font-size="9" font-weight="700" fill="#7A4F1B">VM 1</text>
+        <text x="30" y="32" text-anchor="middle" font-size="9" fill="#605E5C">10.2.2.4</text>
+      </g>
+      <g transform="translate(90, 50)">
+        <rect width="60" height="40" rx="4" fill="#FFF4E5" stroke="#CA8A4F"/>
+        <text x="30" y="18" text-anchor="middle" font-size="9" font-weight="700" fill="#7A4F1B">VM 2</text>
+        <text x="30" y="32" text-anchor="middle" font-size="9" fill="#605E5C">autoscale</text>
+      </g>
+      <g transform="translate(160, 50)">
+        <rect width="60" height="40" rx="4" fill="#FFF4E5" stroke="#CA8A4F" stroke-dasharray="3,2"/>
+        <text x="30" y="18" text-anchor="middle" font-size="9" font-weight="700" fill="#7A4F1B">VM N</text>
+        <text x="30" y="32" text-anchor="middle" font-size="9" fill="#605E5C">max 3</text>
+      </g>
+      <text x="120" y="106" text-anchor="middle" font-size="9" fill="#323130">Standard_D2s_v3 · No public IP</text>
+      <text x="120" y="120" text-anchor="middle" font-size="9" fill="#323130">React + TypeScript + Vite (nginx)</text>
+      <text x="120" y="134" text-anchor="middle" font-size="9" fill="#605E5C">Autoscale: CPU &gt; 60% / 10 min</text>
+    </g>
+    <!-- NSG marker -->
+    <g transform="translate(820, 488)">
+      <rect width="60" height="18" rx="9" fill="#FFFFFF" stroke="#CA8A4F"/>
+      <text x="30" y="13" text-anchor="middle" font-size="9" font-weight="700" fill="#7A4F1B">🛡 NSG</text>
+    </g>
+  </g>
+
+  <!-- ============== SUBNET: snet-api (backend) ============== -->
+  <g>
+    <rect x="905" y="480" width="570" height="200" rx="10" fill="url(#apiGrad)" stroke="#107C10" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="920" y="498" font-size="12" font-weight="700" fill="#0E5814">snet-api  ·  10.2.3.0/24  ·  Backend tier</text>
+
+    <!-- ILB -->
+    <g transform="translate(930, 510)">
+      <rect width="200" height="68" rx="8" fill="#FFFFFF" stroke="#107C10" stroke-width="1.4" filter="url(#shadow)"/>
+      <text x="100" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#0E5814">⚖  Internal Load Balancer</text>
+      <text x="100" y="40" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">ilb-secureflow-dev-backend</text>
+      <text x="100" y="56" text-anchor="middle" font-size="10" fill="#605E5C">Probe :8080 /api/health</text>
+    </g>
+
+    <!-- VMSS Backend -->
+    <g transform="translate(1180, 510)">
+      <rect width="270" height="150" rx="8" fill="#FFFFFF" stroke="#107C10" stroke-width="1.4" filter="url(#shadow)"/>
+      <text x="135" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#0E5814">VMSS  ·  Backend</text>
+      <text x="135" y="38" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">vmss-secureflow-dev-backend</text>
+      <g transform="translate(20, 50)">
+        <rect width="65" height="40" rx="4" fill="#E5F2E5" stroke="#107C10"/>
+        <text x="32" y="18" text-anchor="middle" font-size="9" font-weight="700" fill="#0E5814">VM 1</text>
+        <text x="32" y="32" text-anchor="middle" font-size="9" fill="#605E5C">10.2.3.4</text>
+      </g>
+      <g transform="translate(95, 50)">
+        <rect width="65" height="40" rx="4" fill="#E5F2E5" stroke="#107C10"/>
+        <text x="32" y="18" text-anchor="middle" font-size="9" font-weight="700" fill="#0E5814">VM 2</text>
+        <text x="32" y="32" text-anchor="middle" font-size="9" fill="#605E5C">autoscale</text>
+      </g>
+      <g transform="translate(170, 50)">
+        <rect width="65" height="40" rx="4" fill="#E5F2E5" stroke="#107C10" stroke-dasharray="3,2"/>
+        <text x="32" y="18" text-anchor="middle" font-size="9" font-weight="700" fill="#0E5814">VM N</text>
+        <text x="32" y="32" text-anchor="middle" font-size="9" fill="#605E5C">max 3</text>
+      </g>
+      <text x="135" y="106" text-anchor="middle" font-size="9" fill="#323130">Java 21 · Spring Boot · Maven</text>
+      <text x="135" y="120" text-anchor="middle" font-size="9" fill="#323130">Managed Identity → Key Vault</text>
+      <text x="135" y="134" text-anchor="middle" font-size="9" fill="#605E5C">Autoscale: CPU &gt; 60% / 10 min</text>
+    </g>
+    <!-- NSG marker -->
+    <g transform="translate(1410, 488)">
+      <rect width="60" height="18" rx="9" fill="#FFFFFF" stroke="#107C10"/>
+      <text x="30" y="13" text-anchor="middle" font-size="9" font-weight="700" fill="#0E5814">🛡 NSG</text>
+    </g>
+  </g>
+
+  <!-- ============== SUBNET: snet-data ============== -->
+  <g>
+    <rect x="345" y="700" width="800" height="270" rx="10" fill="url(#dataGrad)" stroke="#5C2D91" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="360" y="718" font-size="12" font-weight="700" fill="#3D1A78">snet-data  ·  10.2.4.0/24  ·  Data tier (private endpoints only)</text>
+
+    <!-- SQL PE + SQL Server -->
+    <g transform="translate(370, 740)">
+      <rect width="350" height="100" rx="8" fill="#FFFFFF" stroke="#5C2D91" stroke-width="1.4" filter="url(#shadow)"/>
+      <text x="175" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#3D1A78">🔒 Private Endpoint</text>
+      <text x="175" y="38" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">pe-secureflow-dev-sql</text>
+      <line x1="20" y1="50" x2="330" y2="50" stroke="#D2D0CE" stroke-dasharray="2,2"/>
+      <text x="175" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">🗄  Azure SQL Database</text>
+      <text x="175" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">sql-secureflow-dev / sqldb-secureflow-docs</text>
+      <text x="175" y="94" text-anchor="middle" font-size="10" fill="#A4262C">Public network access: DISABLED</text>
+    </g>
+
+    <!-- Key Vault PE + KV -->
+    <g transform="translate(750, 740)">
+      <rect width="370" height="100" rx="8" fill="#FFFFFF" stroke="#5C2D91" stroke-width="1.4" filter="url(#shadow)"/>
+      <text x="185" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#3D1A78">🔒 Private Endpoint</text>
+      <text x="185" y="38" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">pe-secureflow-dev-kv</text>
+      <line x1="20" y1="50" x2="350" y2="50" stroke="#D2D0CE" stroke-dasharray="2,2"/>
+      <text x="185" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">🔑  Azure Key Vault</text>
+      <text x="185" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">kv-sfdocs-29c28e</text>
+      <text x="185" y="94" text-anchor="middle" font-size="10" fill="#605E5C">Secrets · RBAC · Managed-identity access</text>
+    </g>
+
+    <!-- Private DNS Zones -->
+    <g transform="translate(370, 860)">
+      <rect width="750" height="92" rx="8" fill="#FFFFFF" stroke="#5C2D91" stroke-width="1.2" stroke-dasharray="3,2" filter="url(#shadow)"/>
+      <text x="375" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#3D1A78">🌐  Private DNS Zones (linked to VNet)</text>
+      <g transform="translate(40, 40)">
+        <rect width="320" height="36" rx="6" fill="#F5EFFA"/>
+        <text x="160" y="16" text-anchor="middle" font-size="10" font-weight="600" fill="#3D1A78">privatelink.database.windows.net</text>
+        <text x="160" y="29" text-anchor="middle" font-size="9" fill="#605E5C">resolves SQL FQDN → 10.2.4.x</text>
+      </g>
+      <g transform="translate(390, 40)">
+        <rect width="320" height="36" rx="6" fill="#F5EFFA"/>
+        <text x="160" y="16" text-anchor="middle" font-size="10" font-weight="600" fill="#3D1A78">privatelink.vaultcore.azure.net</text>
+        <text x="160" y="29" text-anchor="middle" font-size="9" fill="#605E5C">resolves Key Vault FQDN → 10.2.4.x</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============== SUBNET: snet-ops + bastion ============== -->
+  <g>
+    <rect x="1165" y="700" width="310" height="270" rx="10" fill="url(#opsGrad)" stroke="#A4262C" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="1180" y="718" font-size="12" font-weight="700" fill="#A4262C">snet-ops + AzureBastionSubnet</text>
+
+    <!-- Bastion -->
+    <g transform="translate(1185, 736)">
+      <rect width="270" height="58" rx="8" fill="#FFFFFF" stroke="#A4262C" stroke-width="1.3" filter="url(#shadow)"/>
+      <text x="135" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#A4262C">🖧  Azure Bastion</text>
+      <text x="135" y="36" text-anchor="middle" font-size="10" font-weight="600" fill="#323130">group1-final-vnet-bastion</text>
+      <text x="135" y="50" text-anchor="middle" font-size="9" fill="#605E5C">Browser-based SSH/RDP, no public IP on VMs</text>
+    </g>
+
+    <!-- Ops VM -->
+    <g transform="translate(1185, 802)">
+      <rect width="270" height="78" rx="8" fill="#FFFFFF" stroke="#A4262C" stroke-width="1.3" filter="url(#shadow)"/>
+      <text x="135" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#A4262C">💻  Ops VM  ·  group1-final</text>
+      <text x="135" y="36" text-anchor="middle" font-size="10" fill="#323130">10.2.0.4 · existing legacy host</text>
+      <text x="135" y="52" text-anchor="middle" font-size="9" fill="#323130">• Self-hosted GitHub Actions runner</text>
+      <text x="135" y="66" text-anchor="middle" font-size="9" fill="#323130">• SonarQube (configured by Ansible)</text>
+    </g>
+
+    <!-- NSG -->
+    <g transform="translate(1185, 890)">
+      <rect width="270" height="58" rx="8" fill="#FFFFFF" stroke="#A4262C" stroke-width="1.3" filter="url(#shadow)"/>
+      <text x="135" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#A4262C">🛡  Network Security Groups</text>
+      <text x="135" y="36" text-anchor="middle" font-size="9" fill="#323130">nsg-secureflow-dev-web · nsg-secureflow-dev-api</text>
+      <text x="135" y="50" text-anchor="middle" font-size="9" fill="#605E5C">SSH only from snet-ops; ingress from snet-appgw</text>
+    </g>
+  </g>
+
+  <!-- ================== MONITORING (right rail inside RG) ================== -->
+  <g transform="translate(1520, 295)">
+    <rect width="200" height="450" rx="10" fill="#FFFFFF" stroke="#CA5010" stroke-width="1.4"/>
+    <rect width="200" height="26" rx="10" fill="#CA5010"/>
+    <text x="100" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">📊 Monitoring</text>
+
+    <g transform="translate(12, 38)">
+      <rect width="176" height="48" rx="6" fill="#FFF4EC" stroke="#CA5010"/>
+      <text x="88" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#A04000">Application Insights</text>
+      <text x="88" y="32" text-anchor="middle" font-size="9" fill="#323130">appi-secureflow-dev</text>
+      <text x="88" y="42" text-anchor="middle" font-size="9" fill="#605E5C">requests · failures · deps</text>
+    </g>
+
+    <g transform="translate(12, 96)">
+      <rect width="176" height="48" rx="6" fill="#FFF4EC" stroke="#CA5010"/>
+      <text x="88" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#A04000">Log Analytics</text>
+      <text x="88" y="32" text-anchor="middle" font-size="9" fill="#323130">law-secureflow-dev</text>
+      <text x="88" y="42" text-anchor="middle" font-size="9" fill="#605E5C">AppGW · NSG · diag logs</text>
+    </g>
+
+    <g transform="translate(12, 154)">
+      <rect width="176" height="124" rx="6" fill="#FFF4EC" stroke="#CA5010"/>
+      <text x="88" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#A04000">Alerts (≥3)</text>
+      <text x="10" y="32" font-size="9" fill="#323130">• AppGW backend health &lt;100%</text>
+      <text x="10" y="46" font-size="9" fill="#323130">• Frontend / Backend CPU &gt;70%</text>
+      <text x="10" y="60" font-size="9" fill="#323130">• SQL DTU &gt;80%</text>
+      <text x="10" y="74" font-size="9" fill="#323130">• AI: API traffic spike</text>
+      <text x="10" y="88" font-size="9" fill="#323130">• AI: failed-login burst</text>
+      <text x="10" y="102" font-size="9" fill="#605E5C">Smart detector: failure anomalies</text>
+      <text x="10" y="116" font-size="9" fill="#605E5C">on appi-secureflow-dev</text>
+    </g>
+
+    <g transform="translate(12, 288)">
+      <rect width="176" height="62" rx="6" fill="#FFF4EC" stroke="#CA5010"/>
+      <text x="88" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#A04000">Action Groups</text>
+      <text x="10" y="30" font-size="9" fill="#323130">ag-secureflow-dev-platform</text>
+      <text x="10" y="42" font-size="9" fill="#323130">ag-slackcpualert · ag-slackcostalert</text>
+      <text x="10" y="55" font-size="9" fill="#605E5C">→ Logic Apps → Slack channel</text>
+    </g>
+
+    <g transform="translate(12, 360)">
+      <rect width="176" height="76" rx="6" fill="#FFF4EC" stroke="#CA5010"/>
+      <text x="88" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#A04000">Logic Apps · Slack</text>
+      <text x="88" y="30" text-anchor="middle" font-size="9" fill="#323130">SlackNotf · SlackCostNotf</text>
+      <text x="88" y="44" text-anchor="middle" font-size="9" fill="#605E5C">+ slack API connection</text>
+      <text x="88" y="60" text-anchor="middle" font-size="9" fill="#605E5C">budget · anomaly · CPU</text>
+    </g>
+  </g>
+
+  <!-- ================== BACKUP / DR (right rail bottom) ================== -->
+  <g transform="translate(1520, 760)">
+    <rect width="200" height="100" rx="10" fill="#FFFFFF" stroke="#0078D4" stroke-width="1.4"/>
+    <rect width="200" height="26" rx="10" fill="#0078D4"/>
+    <text x="100" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">💾 Backup &amp; DR</text>
+    <g transform="translate(12, 36)">
+      <text x="88" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="#243A5E">Recovery Services Vault</text>
+      <text x="88" y="28" text-anchor="middle" font-size="9" fill="#323130">rsv-secureflow-dev-dr</text>
+      <text x="88" y="42" text-anchor="middle" font-size="9" fill="#605E5C">VM backup policy</text>
+      <text x="88" y="56" text-anchor="middle" font-size="9" fill="#605E5C">SQL PITR + LTR</text>
+    </g>
+  </g>
+
+  <!-- ================== TF STATE STORAGE ================== -->
+  <g transform="translate(1520, 875)">
+    <rect width="200" height="115" rx="10" fill="#FFFFFF" stroke="#5C2D91" stroke-width="1.4"/>
+    <rect width="200" height="26" rx="10" fill="#5C2D91"/>
+    <text x="100" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">📦 TF Remote State</text>
+    <g transform="translate(12, 36)">
+      <text x="88" y="14" text-anchor="middle" font-size="10" font-weight="700" fill="#3D1A78">Storage Account</text>
+      <text x="88" y="28" text-anchor="middle" font-size="9" fill="#323130">tfstategrp1sf26640</text>
+      <text x="88" y="42" text-anchor="middle" font-size="9" fill="#605E5C">container: tfstate</text>
+      <text x="88" y="56" text-anchor="middle" font-size="9" fill="#605E5C">key: secureflow-dev.tfstate</text>
+      <text x="88" y="72" text-anchor="middle" font-size="9" fill="#605E5C">Locked &amp; versioned</text>
+    </g>
+  </g>
+
+  <!-- ================== CI/CD (left rail inside RG, below NAT) ================== -->
+  <g transform="translate(85, 425)">
+    <rect width="220" height="560" rx="10" fill="#FFFFFF" stroke="#5C2D91" stroke-width="1.4"/>
+    <rect width="220" height="26" rx="10" fill="#5C2D91"/>
+    <text x="110" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">⚙ Automation · CI/CD</text>
+
+    <g transform="translate(14, 38)">
+      <rect width="192" height="78" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">GitHub Actions</text>
+      <text x="10" y="34" font-size="9" fill="#323130">infra.yml — terraform init/plan/apply</text>
+      <text x="10" y="48" font-size="9" fill="#323130">frontend.yml — build → test → deploy</text>
+      <text x="10" y="62" font-size="9" fill="#323130">backend.yml — mvn test → SonarQube</text>
+      <text x="10" y="74" font-size="9" fill="#323130">                          → package → deploy</text>
+    </g>
+
+    <g transform="translate(14, 126)">
+      <rect width="192" height="60" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">Terraform</text>
+      <text x="96" y="32" text-anchor="middle" font-size="9" fill="#323130">modules · variables · workspaces</text>
+      <text x="96" y="46" text-anchor="middle" font-size="9" fill="#323130">remote backend (Azure Storage)</text>
+    </g>
+
+    <g transform="translate(14, 196)">
+      <rect width="192" height="60" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">Ansible</text>
+      <text x="96" y="32" text-anchor="middle" font-size="9" fill="#323130">inventories: dev / prod</text>
+      <text x="96" y="46" text-anchor="middle" font-size="9" fill="#323130">roles: common · sonarqube · app</text>
+    </g>
+
+    <g transform="translate(14, 266)">
+      <rect width="192" height="60" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">SonarQube</text>
+      <text x="96" y="32" text-anchor="middle" font-size="9" fill="#323130">on Ops VM (127.0.0.1:9000)</text>
+      <text x="96" y="46" text-anchor="middle" font-size="9" fill="#323130">code scan in backend.yml</text>
+    </g>
+
+    <g transform="translate(14, 336)">
+      <rect width="192" height="60" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">Self-hosted Runner</text>
+      <text x="96" y="32" text-anchor="middle" font-size="9" fill="#323130">secureflow-ops-runner</text>
+      <text x="96" y="46" text-anchor="middle" font-size="9" fill="#605E5C">runs on Ops VM, reaches private VMSS</text>
+    </g>
+
+    <g transform="translate(14, 406)">
+      <rect width="192" height="60" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">DAST · OWASP ZAP</text>
+      <text x="96" y="32" text-anchor="middle" font-size="9" fill="#323130">scans live AppGW URL</text>
+      <text x="96" y="46" text-anchor="middle" font-size="9" fill="#605E5C">scheduled GH Actions workflow</text>
+    </g>
+
+    <g transform="translate(14, 476)">
+      <rect width="192" height="70" rx="6" fill="#F5EFFA" stroke="#5C2D91"/>
+      <text x="96" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#3D1A78">Threat-Intel Feed</text>
+      <text x="96" y="32" text-anchor="middle" font-size="9" fill="#323130">EmergingThreats indicators</text>
+      <text x="96" y="46" text-anchor="middle" font-size="9" fill="#323130">refresh workflow → WAF</text>
+      <text x="96" y="60" text-anchor="middle" font-size="9" fill="#605E5C">custom block rule on AppGW</text>
+    </g>
+  </g>
+
+  <!-- ================== TRAFFIC FLOW ARROWS ================== -->
+  <!-- User → Public IP -->
+  <line x1="180" y1="225" x2="200" y2="293" stroke="#D13438" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-red)"/>
+
+  <!-- Public IP → App Gateway -->
+  <path d="M 295 326 L 538 405" stroke="#D13438" stroke-width="2.2" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-red)"/>
+
+  <!-- AppGW → Frontend ILB (dashed traffic) -->
+  <path d="M 700 444 L 470 510" stroke="#D13438" stroke-width="2" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-red)"/>
+  <text x="500" y="476" font-size="11" font-weight="700" fill="#A4262C">/</text>
+
+  <!-- AppGW → Backend ILB -->
+  <path d="M 1100 444 L 1030 510" stroke="#D13438" stroke-width="2" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-red)"/>
+  <text x="1040" y="476" font-size="11" font-weight="700" fill="#A4262C">/api/*</text>
+
+  <!-- Frontend ILB → VMSS frontend -->
+  <line x1="570" y1="544" x2="620" y2="544" stroke="#243A5E" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Backend ILB → VMSS backend -->
+  <line x1="1130" y1="544" x2="1180" y2="544" stroke="#243A5E" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Backend VMSS → SQL PE -->
+  <path d="M 1300 660 C 1300 690, 700 700, 545 740" stroke="#107C10" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="900" y="704" font-size="10" font-weight="600" fill="#107C10">JDBC via Private Endpoint</text>
+
+  <!-- Backend VMSS → KV PE -->
+  <path d="M 1320 660 C 1320 700, 1050 740, 935 740" stroke="#107C10" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="1095" y="694" font-size="10" font-weight="600" fill="#107C10">Managed Identity → KV</text>
+
+  <!-- VMSS → NAT Gateway (egress) -->
+  <path d="M 700 660 C 500 660, 280 500, 200 413" stroke="#CA5010" stroke-width="1.6" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-orange)"/>
+  <text x="320" y="540" font-size="9" fill="#CA5010" font-style="italic">outbound updates → NAT</text>
+
+  <!-- VMSS → App Insights (telemetry) -->
+  <path d="M 860 580 C 1300 560, 1450 410, 1520 380" stroke="#CA5010" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-orange)"/>
+  <path d="M 1300 580 C 1450 530, 1500 460, 1520 405" stroke="#CA5010" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-orange)"/>
+
+  <!-- AppGW → Log Analytics (diag) -->
+  <path d="M 1280 405 C 1450 398, 1500 388, 1520 388" stroke="#CA5010" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-orange)"/>
+
+  <!-- GitHub → Self-hosted runner on Ops VM -->
+  <path d="M 1620 225 C 1480 260, 1380 540, 1340 800" stroke="#5C2D91" stroke-width="1.8" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-purple)"/>
+  <text x="1342" y="500" font-size="10" font-weight="600" fill="#5C2D91" text-anchor="end">jobs → self-hosted runner</text>
+
+  <!-- Runner → Terraform → TF state -->
+  <path d="M 1320 880 C 1480 880, 1620 920, 1620 940" stroke="#5C2D91" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-purple)"/>
+
+  <!-- Runner → Ansible → VMSS backend (vertical path through subnet gap) -->
+  <path d="M 1320 802 L 1320 662" stroke="#5C2D91" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#arrow-purple)"/>
+  <text x="1330" y="694" font-size="10" font-weight="600" fill="#5C2D91">Ansible</text>
+
+  <!-- ================== FOOTER NOTES ================== -->
+  <g transform="translate(60, 1045)">
+    <rect width="1680" height="90" rx="10" fill="#FFFFFF" stroke="#D2D0CE"/>
+    <text x="20" y="22" font-size="13" font-weight="700" fill="#243A5E">Acceptance highlights</text>
+    <g font-size="11" fill="#323130">
+      <text x="20" y="44">✓  Single public ingress: only pip-secureflow-dev-appgw is exposed; AppGW WAF v2 fronts both tiers.</text>
+      <text x="20" y="62">✓  No public IPs on VMSS; SQL public network access disabled; Key Vault behind private endpoint.</text>
+      <text x="20" y="80">✓  Routing: <tspan font-weight="700">/</tspan> → frontend pool (port 80, nginx)  ·  <tspan font-weight="700">/api/*</tspan> → backend pool (port 8080, /api/health probe).</text>
+
+      <text x="900" y="44">✓  Monitoring: App Insights + Log Analytics + 3+ metric/Kusto alerts → Action Groups → Slack.</text>
+      <text x="900" y="62">✓  Automation: GitHub Actions (infra/frontend/backend) on self-hosted runner; TF remote state in Storage.</text>
+      <text x="900" y="80">✓  Security: NSGs limit AppGW→tier ingress, ops-only SSH; Bastion for admin; Managed Identity → Key Vault.</text>
+    </g>
+  </g>
+
+</svg>

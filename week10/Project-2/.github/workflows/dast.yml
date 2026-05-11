@@ -1,0 +1,47 @@
+name: DAST
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: "Public Application Gateway URL to scan"
+        required: false
+        default: "https://135.116.238.100/"
+  schedule:
+    - cron: "42 2 * * 1"
+
+jobs:
+  zap-baseline:
+    runs-on: [self-hosted, Linux, X64, secureflow-ops]
+    env:
+      TARGET_URL: ${{ inputs.target_url || vars.GATEWAY_URL || 'https://135.116.238.100/' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check target health
+        run: |
+          set -euo pipefail
+          curl -kfsS "$TARGET_URL" >/dev/null
+          curl -kfsS "${TARGET_URL%/}/api/health"
+
+      - name: Run OWASP ZAP baseline scan
+        run: |
+          set -euo pipefail
+          mkdir -p zap-reports
+          sudo docker run --rm \
+            -v "$PWD/zap-reports:/zap/wrk:rw" \
+            ghcr.io/zaproxy/zaproxy:stable \
+            zap-baseline.py \
+              -t "$TARGET_URL" \
+              -r secureflow-zap-report.html \
+              -J secureflow-zap-report.json \
+              -w secureflow-zap-report.md \
+              -I \
+              -z "-config connection.sslAcceptAll=true"
+
+      - name: Upload DAST reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: secureflow-zap-dast-report
+          path: zap-reports/
+          if-no-files-found: error

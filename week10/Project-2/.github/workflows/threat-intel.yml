@@ -1,0 +1,66 @@
+name: Threat Intelligence WAF Refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  refresh-waf-threat-feed:
+    runs-on: [self-hosted, Linux, X64, secureflow-ops]
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Fetch EmergingThreats feed and update WAF custom rule
+        env:
+          RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP_NAME || 'group1_final' }}
+          WAF_POLICY_NAME: waf-secureflow-dev
+          RULE_NAME: BlockThreatIntelIPs
+          FEED_URL: https://rules.emergingthreats.net/fwrules/emerging-Block-IPs.txt
+        run: |
+          set -euo pipefail
+
+          mapfile -t BLOCK_IPS < <(
+            curl -fsSL "$FEED_URL" |
+              sed 's/#.*$//' |
+              tr -d '\r' |
+              awk 'NF && $1 ~ /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+(\/[0-9]+)?$/ { print $1 }' |
+              head -n 20
+          )
+
+          if [ "${#BLOCK_IPS[@]}" -eq 0 ]; then
+            echo "No threat intelligence IPs found in feed."
+            exit 1
+          fi
+
+          VALUES_JSON=$(printf '"%s",' "${BLOCK_IPS[@]}")
+          VALUES_JSON="[${VALUES_JSON%,}]"
+          MATCH_CONDITIONS="[{\"variables\":[{\"variable-name\":\"RemoteAddr\"}],\"operator\":\"IPMatch\",\"negate\":false,\"values\":${VALUES_JSON}}]"
+
+          az network application-gateway waf-policy custom-rule delete \
+            --resource-group "$RESOURCE_GROUP" \
+            --policy-name "$WAF_POLICY_NAME" \
+            --name "$RULE_NAME" \
+            --yes \
+            --only-show-errors || true
+
+          az network application-gateway waf-policy custom-rule create \
+            --resource-group "$RESOURCE_GROUP" \
+            --policy-name "$WAF_POLICY_NAME" \
+            --name "$RULE_NAME" \
+            --priority 50 \
+            --rule-type MatchRule \
+            --action Block \
+            --state Enabled \
+            --match-conditions "$MATCH_CONDITIONS" \
+            --only-show-errors
+
+          echo "Updated $RULE_NAME with ${#BLOCK_IPS[@]} EmergingThreats indicators."

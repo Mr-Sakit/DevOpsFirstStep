@@ -1,0 +1,95 @@
+name: Backend
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "apps/backend/**"
+      - "config/ansible/**"
+      - ".github/workflows/backend.yml"
+  pull_request:
+    paths:
+      - "apps/backend/**"
+      - "config/ansible/**"
+
+jobs:
+  build-test-scan-package:
+    runs-on: [self-hosted, Linux, X64, secureflow-ops]
+    defaults:
+      run:
+        working-directory: apps/backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21"
+
+      - name: Install Maven
+        run: |
+          if ! command -v mvn >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y maven
+          fi
+
+      - name: Test, package, and generate coverage
+        run: mvn -B clean verify
+
+      - name: SonarQube scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "SONAR_TOKEN is empty. Skipping SonarQube scan."
+            exit 0
+          fi
+
+          mvn -B sonar:sonar \
+            -Dsonar.projectKey=secureflow-docs-azure-project2 \
+            -Dsonar.projectName="SecureFlow Docs Azure Project 2" \
+            -Dsonar.host.url=http://127.0.0.1:9000 \
+            -Dsonar.token="$SONAR_TOKEN" \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: secureflow-backend
+          path: apps/backend/target/secureflow-docs-backend-0.1.0.jar
+
+  deploy:
+    needs: build-test-scan-package
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, Linux, X64, secureflow-ops]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: secureflow-backend
+          path: apps/backend/target
+
+      - name: Deploy backend from self-hosted ops runner
+        env:
+          OPS_SSH_KEY: ${{ secrets.OPS_SSH_KEY }}
+          KEY_VAULT_URI: ${{ vars.KEY_VAULT_URI || 'https://kv-sfdocs-29c28e.vault.azure.net/' }}
+          SQL_SERVER_FQDN: ${{ vars.SQL_SERVER_FQDN || 'sql-secureflow-dev.database.windows.net' }}
+          SQL_DATABASE_NAME: ${{ vars.SQL_DATABASE_NAME || 'sqldb-secureflow-docs' }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$OPS_SSH_KEY" > ~/.ssh/group1-final_key.pem
+          chmod 600 ~/.ssh/group1-final_key.pem
+
+          sudo apt-get update
+          sudo apt-get install -y ansible python3-pip
+
+          ansible-galaxy collection install -r config/ansible/requirements.yml
+
+          ANSIBLE_HOST_KEY_CHECKING=False \
+            KEY_VAULT_URI="$KEY_VAULT_URI" \
+            SQL_SERVER_FQDN="$SQL_SERVER_FQDN" \
+            SQL_DATABASE_NAME="$SQL_DATABASE_NAME" \
+            BACKEND_ARTIFACT="$GITHUB_WORKSPACE/apps/backend/target/secureflow-docs-backend-0.1.0.jar" \
+            ansible-playbook config/ansible/site.yml --limit backend -i config/ansible/inventories/prod/hosts.ini --private-key ~/.ssh/group1-final_key.pem

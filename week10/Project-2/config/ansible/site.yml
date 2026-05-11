@@ -1,0 +1,28 @@
+---
+- name: Harden and patch all Linux hosts
+  hosts: all
+  become: true
+  roles:
+    - common
+
+- name: Configure SonarQube for CI quality gates
+  hosts: sonarqube
+  become: true
+  roles:
+    - sonarqube
+
+- name: Deploy SecureFlow frontend
+  hosts: frontend
+  become: true
+  vars:
+    app_component: frontend
+  roles:
+    - deploy
+
+- name: Deploy SecureFlow backend
+  hosts: backend
+  become: true
+  vars:
+    app_component: backend
+  roles:
+    - deploy
