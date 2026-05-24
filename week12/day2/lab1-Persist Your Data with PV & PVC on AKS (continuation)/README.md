@@ -449,35 +449,19 @@ Both PV and PVC now show **Bound** status ✅
 
 ---
 
-### Step 6: Bring Up API, Frontend, and Ingress (From Previous Lab)
+### Step 6: Bring Up API, Frontend, and Ingress (From Previous Labs)
 
-Apply your previously created manifests:
+This step deploys the rest of the three-tier application (Node.js API + NGINX Frontend) and configures Ingress routing. These components were built and documented in detail in the previous two labs:
 
-```bash
-# Backend (API)
-kubectl apply -f api-deploy.yml
-kubectl apply -f backend-clusterip.yml
+| Component | Lab | README |
+|---|---|---|
+| **Three-Tier App** (Docker builds, API Deployment, Frontend Deployment, LoadBalancer Services) | Lab 8 | [Deploy a Three-Tier App on AKS](../../../week13/day3/lab1-Deploy%20a%20Three-Tier%20App%20on%20Azure%20Kubernetes%20Service%20(AKS)/README.md) |
+| **NGINX Ingress Controller** (Helm install, ClusterIP Services, path-based routing with regex rewrite) | Lab 9 | [Expose the Three-Tier App with a Single Ingress](../../../week13/day4/lab1-Expose%20the%20Three-Tier%20App%20with%20a%20Single%20Ingress%20(AKS)/README.md) |
 
-# Ingress controller (skip if already installed)
-# helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-# helm repo update
-# helm install nginx-ingress ingress-nginx/ingress-nginx \
-#   --namespace ingress-nginx --create-namespace \
-#   --set controller.ingressClassResource.name=nginx \
-#   --set controller.ingressClassResource.controllerValue=k8s.io/ingress-nginx \
-#   --set controller.service.type=LoadBalancer
+> [!NOTE]
+> Follow **Lab 8** to build and deploy the API and Frontend, then follow **Lab 9** to replace the LoadBalancers with a single NGINX Ingress Controller. Once both are complete, return here for the persistence verification.
 
-# Update UI config and restart frontend
-kubectl apply -f ui-configmap.yml
-kubectl rollout restart deploy/frontend-deploy -n user-management
-
-# Frontend + Services + Ingress rules
-kubectl apply -f frontend-deploy.yml
-kubectl apply -f frontend-clusterip.yml
-kubectl apply -f app-ingress.yml
-```
-
-Quick health check:
+Quick health check after completing both labs:
 
 ```bash
 kubectl get deploy,rs,pods,svc -n user-management -o wide
